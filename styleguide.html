@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>前端规范</title>
+	<style>
+		html, body,
+		p, h1, h2, h3, h4, h5, h6, pre,
+		ul, ol, li {
+			margin:0;
+			padding:0;
+		}
+
+		body {
+			font-size:14px;
+			font-family:Verdana;
+			color:#2b2b2b;
+		}
+
+		.hidden { 
+			display:none;
+		}
+
+		.preview {
+			margin:20px;
+		}
+	</style>
+</head>
+<body>
+	
+<!-- style guide -->
+<textarea class="hidden">
+
+**命名**
+ 
+*HTML:
+
+1. 标签以及属性名使用小写;
+2. 标签自定义属性使用 data-property="" 的形式来写, 如果自定义属性特别多, 可以考虑使用类 json 的方式去写: data-json="a:a, b:b"; 
+ 
+*CSS:
+
+1. 在样式文件中定义的 class 名字使用小写字母, 单词之间使用中划线 - , 例如: class="sns-box"; 
+2. 作为 JS 钩子使用的 class 或者 id 命名为 J_RealName 类似的大驼峰形式; 
+ 
+*JavaScript: 
+ 
+1. 构造函数的命名使用首字母大写的形式, 通常为名词, 例如: Class; 
+2. 函数、方法名按描述过程或描述项的方式（动名词结合. 来命名, 以小写字母开头, 连接词使用混合大小写的驼峰形式, 例如: getAncestorByTagName; 
+3. 常量声明, 使用大写字母表示, 分隔单词使用下划线, 例如 var TW_GIRL = '蔡依林';
+4. CSS class 名声明, 使用大写字母并添加 CLASS_ 前缀, 例如 var CLASS_BOX  =  'box' ; 
+5. 私有变量、方法声明, 以单下划线 _ 开头, 例如: _private; 
+6. 布尔值声明使用以 is 开头的驼峰形式, 例如 var isGirl = true; 
+7. this 命名为 that; 
+8. DOM 节点命名, 使用小写加 El 后缀, 例如: boxEl; 
+9. 在循环中, 尽量使用单字符变量名称, 例如: i、j、k、m、n; 
+10. 除以上特殊命名外, 都使小写字母来声明, 例如: var box; ;
+11. 变量名仅能包含字母、数字、下划线和美元符号, 变量名不能以数字开头; 
+12. 避免使用保留字或语言构造命名; 
+13. 尽量保持所有名称最短, 但是一定要保证名称具有描述性; 
+ 
+**编码**
+ 
+*CSS: 
+ 
+1. 样式文件中不要出现大写的标签定义, 不要对 JS 钩子进行样式定义; 
+2. 避免出现 .a.b 之类的定义, 如果做 hack 使用请注明; 
+3. 稀奇古怪的 hack 请加注释; 
+4. 避免使用 !important , 如果必须请加注释; 
+5. 缩进以4个空格为单位; 
+6. 每条规则为一行, 左大括号跟最后一条, 空一格, 例: 
+	.box,
+	.content .box {
+		color:red;
+		font-size:12px;
+	}
+7. 样式使用竖排, 不要使用横排以及n级缩进等; 
+ 
+ 
+*JavaScript: 
+ 
+1. 缩进以4个空格为单位; 
+2. 尽量在头部统一使用 var 声明, 减少 var 的数量; 
+3. 减少 return 的使用量; 
+4. 条件语句的使用, 在 if、else..if 和 if..else 语句中的单独行放置条件,  在 if 语句中使用大括号 {}, 例如: 
+ 
+	// if 语句
+	if (condition) {
+	// 语句
+	}
+	 
+	// if..else 语句
+	if (condition) {
+	// 语句
+	} else {
+	// 语句
+	}
+	 
+	// else..if 语句
+	if (condition) {
+	// 语句
+	} else if (condition) {
+	// 语句
+	} else {
+	// 语句
+	}
+ 
+另外, 在编写复杂条件时, 使用小括号 () 对条件进行组合, 例如: 
+ 
+	if ((fruit == apple) && (veggie == leek)) {}
+ 
+5. 三元操作符不要涉及大段的复杂的代码, 如果可以请改为 if else; 
+6. switch 语句中, break 与 case 对齐; 
+ 
+7. for 语句中每个表达式后都加一个空格, 例如: 
+ 
+	for (var i = 0; i < 4; i++) {
+	//…
+	}
+ 
+8. while 和 do… while 语句使用如下形式: 
+ 
+	while (condition) {
+	// 语句
+	}
+	 
+	do {
+	// 语句
+	} while (condition);
+	 
+	9. try...catch 语句使用如下形式: 
+	 
+	// try..catch
+	try {
+	// 语句
+	} catch (myErr) {
+	// 语句
+	}
+	// try..catch..finally
+	try {
+	// 语句
+	} catch (myErr) {
+	// 语句
+	} finally {
+	// 语句
+	}
+ 
+10. 需要前后加空格的运算符包括: 
+	 =、==、===、!=、!==、>、<、<=、>= 、? :、-、+、+=、-=、/、*、%、&&、&、||、|、{}
+不需要出现空格的包括: 
+	;、.、()、[]
+后边带空格的包括: 
+	,、if、for、while、do、catch、with、new、非三元表达式中的:
+例如: 
+	a += 2 ;
+	b = true ? a : 1;
+ 
+11. 每段函数或者逻辑之间空行; 
+12. 奇淫技巧必须注释; 
+13. 避免使用全局变量, 如果不能避免则尽量减少数量; 
+14. 括号中的参数之间加空格, 例如:  get(x, b, c); 
+15. 将每条语句放置在一个单独的代码行中保持可读性, 不要出现 aNum++; anOtherNum++;在同一行, var 也一样; 
+16. 避免声明或赋值的嵌套  如 var a=(b=(c+5)+1)+3; 
+17. 一定要记住写分号; 
+ 
+ 
+**注释**
+ 
+1. 文件头的注释书写: 
+ 
+	/**
+	 * @fileoverview 文件用途以及简要介绍
+	 * @require 需要引入的文件名
+	 * @author shiran@taobao.com
+	 */
+ 
+2. 类的注释: 
+ 
+	/**
+	 * 介绍
+	  * @class YUI
+	 * @param arg1 { String } 参数描述
+	 * @param arg2 { Array } 参数描述
+	 * @constructor
+	 * @extends { goog.Disposable }
+	 */
+ 
+3. 方法、函数注释: 
+ 
+	/**
+	 * 介绍
+	  * @method getData
+	 * @param arg1 { String } 参数描述
+	 * @return { String } 描述
+	 */
+ 
+4. 属性注释: 
+ 
+	/**
+	 * 介绍
+	 * @type { Number }
+	 */
+ 
+5. 行内或者较短注释可以使用 // 或者 /* ... */
+ 
+6. 多行大段描述性注释, 使用 // 来分行书写, 比如: 
+ 
+	//Takes a named string, hex string, array of rgb or rgba values,
+	//an object with r, g, b, and a properties, or another `dojo.Color` object
+	//and creates a new Color instance to work from.
+ 
+7. @TODO 注释请注明大概完成日期, 不要让此注释常驻; 
+ 
+**数据**
+ 
+开发返回数据编码约定, 待定。
+
+	
+</textarea>
+
+<!-- use jQuery to convert Markdown to HTML -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+
+<script>
+$(function() {
+
+	$('<div id="preview" class="preview" />').insertAfter($('textarea')).html(new Showdown.converter().makeHtml($('textarea').val()));
+
+});
+</script>
+
+</body>
+</html>
