@@ -51,6 +51,51 @@ HTML:
 
 7. `<iframe>` 标签尽量少用;
 
+**注释规范**
+
+1. 对每一个 html 模块, 使用注释包裹, 并加上模块标识: 
+
+		<!-- tsearch { -->
+		<div id="tsearch">
+			<form method="post" action="#">
+				<!-- ... -->
+			</form>
+		</div>
+		<!-- } -->
+
+   如果需要在模块内添加子模块注释, 使用多个“{}”对包裹以区分层级: 
+
+		<!-- sub-module {{ -->
+		<div class="sub-module">
+			<!-- ... -->
+		</div>
+		<!-- }} -->
+
+   对于特意需要留有空行 / 空格, 或特意不需要的地方, 使用注释明确指出
+
+2. 修改别人代码时, 加入修改信息. 至少加入修改者大名和修改时间: 
+
+		<!--@author fahai-->
+		<!--@last-modified 2010-12-15 13:21-->
+
+
+3. ie 条件注释:
+
+		<!--[if IE]>
+		<![endif]-->
+
+
+		<!--[if IE 7]>
+		<![endif]-->
+
+
+		<!--[if lte IE 7]>
+		<![endif]-->
+
+
+		<!--[if !IE]><!-->
+		<!--<![endif]-->
+
 
 <a name="CSS"></a>
 CSS:
@@ -113,7 +158,7 @@ CSS:
 		 * @modified shiran 2011-2-18
 		 */
 
-2. 对应于 html 模块，每一个模块使用注释包裹，并加上模块标识：
+2. 对应于 html 模块, 每一个模块使用注释包裹, 并加上模块标识: 
 
 		/* top-banner { */
 		.top-header .top-banner {
@@ -127,7 +172,7 @@ CSS:
 		}
 		/* } */
 
-3. 神奇代码和鬼才 hack 添加注释：
+3. 神奇代码和鬼才 hack 添加注释: 
 
 		background-color: transparent; /* flexible background gradient */
 		font-family: serif; /* text floating bug in ie6 */
@@ -144,15 +189,15 @@ JavaScript:
 
 3. 需要前后加空格的运算符包括: 
 
-		 =、==、===、!=、!==、>、<、<=、>= 、? :、-、+、+=、-=、/、*、%、&&、&、||、|、{}
+		 =, ==, ===, !=, !==, >, <, <=, >= , ? :, -, +, +=, -=, /, *, %, &&, &, ||, |, {}
 
 	不需要出现空格的包括: 
 
-		;、.、()、[]
+		;, ., (), []
 
 	后边带空格的包括: 
 
-		,、if、for、while、do、catch、with、new、非三元表达式中的:
+		,, if, for, while, do, catch, with, new, 非三元表达式中的:
 
 	例如: 
 
@@ -175,13 +220,13 @@ JavaScript:
 
 1. 构造函数的命名使用首字母大写的形式, 通常为名词, 例如: Class; 
 
-2. 函数、方法名按描述过程或描述项的方式（动名词结合. 来命名, 以小写字母开头, 连接词使用混合大小写的驼峰形式, 例如: getAncestorByTagName; 
+2. 函数, 方法名按描述过程或描述项的方式（动名词结合. 来命名, 以小写字母开头, 连接词使用混合大小写的驼峰形式, 例如: getAncestorByTagName; 
 
 3. 常量命名, 使用大写字母表示, 分隔单词使用下划线, 例如 var TW_GIRL = '蔡依林';
 
 4. CSS class 名声明, 使用大写字母并添加 CLASS_ 前缀, 例如 var CLASS_BOX  =  'box' ; 
 
-5. 私有变量、方法声明, 以单下划线 _ 开头, 例如: _private; 
+5. 私有变量, 方法声明, 以单下划线 _ 开头, 例如: _private; 
 
 6. 布尔值声明使用以 is 开头的驼峰形式, 例如 var isGirl = true; 
 
@@ -189,11 +234,11 @@ JavaScript:
 
 8. DOM 节点命名, 使用小写加 El 后缀, 例如: boxEl; 
 
-9. 在循环中, 尽量使用单字符变量名称, 例如: i、j、k、m、n; 
+9. 在循环中, 尽量使用单字符变量名称, 例如: i, j, k, m, n; 
 
 10. 除以上特殊命名外, 都使小写字母来声明, 例如: var box; ;
 
-11. 变量名仅能包含字母、数字、下划线和美元符号, 变量名不能以数字开头; 
+11. 变量名仅能包含字母, 数字, 下划线和美元符号, 变量名不能以数字开头; 
 
 12. 避免使用保留字或语言构造命名; 
 
@@ -409,7 +454,7 @@ JavaScript:
 		goog.inherits(project.MyClass, goog.Disposable);
 
  
-3. 方法、函数注释: 
+3. 方法, 函数注释: 
  
 		/**
 		 * Converts text to some completely different text.
@@ -493,7 +538,7 @@ JavaScript:
 数据
 ----------
  
-开发返回数据编码约定, 待定。
+开发返回数据编码约定, 待定. 
 
 
 参考资料:
