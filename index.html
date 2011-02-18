@@ -58,15 +58,14 @@
 	<script>
 		$(function() {
 
-			$.ajax({
-				url: 'guide.txt',
-				type: 'post',
-				success: function(data) {
+			$.get(
+				'guide.txt',
+				function(data) {
 
 					$('<div id="preview" class="preview" />').appendTo($('body')).html(new Showdown.converter().makeHtml(data));
 
 				}
-			});
+			);
 
 		});
 
