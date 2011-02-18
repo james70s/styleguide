@@ -30,6 +30,11 @@ HTML:
 
 7. 不要在浮动元素之间插入任何内容, 包括注释, script 标签, style 标签等;( 在 ie6 下会对浮动元素造成影响 );
 
+8. css 引用置于头部 `<head>` 标签内;
+
+9. js 引用置于底部 `</body>` 标签前;
+
+
 **标签使用**
 
 1. `<base>` 标签必须放在 `<head>` 内 (注: 否则在某些浏览器下可能会失效);
@@ -38,9 +43,13 @@ HTML:
 
 3. `<strong>` 标签用于强调重要性, `<em>` 标签用于表示内容的着重点;( [Why?][strong&em] )
 
-4. `<i>` 标签用来显示 icon;
+4. `<i>` 标签用来显示图标(icon);
 
+5. `<s>` 标签用来显示阴影(shadow);
 
+6. `<b>` 标签用来显示边框(border);
+
+7. `<iframe>` 标签尽量少用;
 
 
 <a name="CSS"></a>
@@ -91,8 +100,37 @@ CSS:
 		background:#003 url(http://www.taobao.com/loading.png) no-repeat 0 0;
 		background-color:red;
 
+3. 在使用 CSS expression 时一定要检测性能, 尽量避免使用;
+
+**注释规范**
+
+1. 文件头注释:
+
+		/**
+		 * Style for module header.
+		 * @author fahai
+		 * @version 1.0.0 build 2010-12-8
+		 * @modified shiran 2011-2-18
+		 */
+
+2. 对应于 html 模块，每一个模块使用注释包裹，并加上模块标识：
+
+		/* top-banner { */
+		.top-header .top-banner {
+			width: 100%;
+			height: 40px;
+		}
 
 
+		.top-header .top-banner img {
+			vertical-align: middle;
+		}
+		/* } */
+
+3. 神奇代码和鬼才 hack 添加注释：
+
+		background-color: transparent; /* flexible background gradient */
+		font-family: serif; /* text floating bug in ie6 */
 
 <a name="JavaScript"></a>
 JavaScript:
@@ -160,6 +198,16 @@ JavaScript:
 12. 避免使用保留字或语言构造命名; 
 
 13. 尽量保持所有名称最短, 但是一定要保证名称具有描述性; 
+
+14. 临时变量命名:
+
+		字符 c, d, e 
+		坐标 x, y, z 
+		异常 e 
+		图形 g 
+		对象 o 
+		流 in, out 
+		字符串 s
 
 
 **具体规范**
@@ -343,6 +391,7 @@ JavaScript:
 		 * @fileoverview Description of file, its uses and information
 		 * about its dependencies.
 		 * @author user@google.com (Firstname Lastname)
+         * @modified shiran 2011-2-18
 		 */
  
 2. 类的注释: 
