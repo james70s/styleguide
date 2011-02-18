@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>前端规范</title>
+	<style>
+
+		html, body,
+		p, pre, code, h1, h2,
+		ul, ol, li {
+			margin:0;
+			padding:0;
+		}
+
+		body {
+			font-size:14px;
+			font-family:Verdana;
+			line-height:24px;
+		}
+
+		h1 {
+			font-size:30px;
+			color:green;
+			padding-bottom:20px;
+			margin-bottom:40px;
+			border-bottom:1px solid #eaeaea;
+			text-align:center;
+		}
+
+		h2 {
+			font-size:16px;
+			margin-bottom:20px;
+			color:purple;
+		}
+
+		ul, ol {
+			margin:10px 30px;
+		}
+
+		pre {
+			border:1px solid #eaeaea;
+			background-color:#fafafa;
+			padding:10px;
+			margin:10px 0;
+		}
+
+		.preview {
+			margin:20px;
+		}
+
+	</style>
+</head>
+<body>
+
+	<!-- use jQuery to convert Markdown to HTML -->
+	<script src="showdown.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+	<script>
+		$(function() {
+
+			$.ajax({
+				url: 'guide.txt',
+				type: 'post',
+				success: function(data) {
+
+					$('<div id="preview" class="preview" />').appendTo($('body')).html(new Showdown.converter().makeHtml(data));
+
+				}
+			});
+
+		});
+
+	</script>
+
+</body>
+</html>
