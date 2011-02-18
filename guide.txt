@@ -1,49 +1,20 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="gbk">
-	<title>前端规范</title>
-	<style>
-		html, body,
-		p, h1, h2, h3, h4, h5, h6, pre,
-		ul, ol, li {
-			margin:0;
-			padding:0;
-		}
+前端规范
+==========
 
-		body {
-			font-size:14px;
-			font-family:Verdana;
-			color:#2b2b2b;
-		}
-
-		.hidden { 
-			display:none;
-		}
-
-		.preview {
-			margin:20px;
-		}
-	</style>
-</head>
-<body>
-	
-<!-- style guide -->
-<textarea class="hidden">
-
-**命名**
+命名
+----------
  
-*HTML:
+**HTML:**
 
 1. 标签以及属性名使用小写;
 2. 标签自定义属性使用 data-property="" 的形式来写, 如果自定义属性特别多, 可以考虑使用类 json 的方式去写: data-json="a:a, b:b"; 
  
-*CSS:
+**CSS:**
 
 1. 在样式文件中定义的 class 名字使用小写字母, 单词之间使用中划线 - , 例如: class="sns-box"; 
 2. 作为 JS 钩子使用的 class 或者 id 命名为 J_RealName 类似的大驼峰形式; 
  
-*JavaScript: 
+**JavaScript:**
  
 1. 构造函数的命名使用首字母大写的形式, 通常为名词, 例如: Class; 
 2. 函数、方法名按描述过程或描述项的方式（动名词结合. 来命名, 以小写字母开头, 连接词使用混合大小写的驼峰形式, 例如: getAncestorByTagName; 
@@ -59,9 +30,10 @@
 12. 避免使用保留字或语言构造命名; 
 13. 尽量保持所有名称最短, 但是一定要保证名称具有描述性; 
  
-**编码**
+编码
+----------
  
-*CSS: 
+**CSS:**
  
 1. 样式文件中不要出现大写的标签定义, 不要对 JS 钩子进行样式定义; 
 2. 避免出现 .a.b 之类的定义, 如果做 hack 使用请注明; 
@@ -77,7 +49,7 @@
 7. 样式使用竖排, 不要使用横排以及n级缩进等; 
  
  
-*JavaScript: 
+**JavaScript:**
  
 1. 缩进以4个空格为单位; 
 2. 尽量在头部统一使用 var 声明, 减少 var 的数量; 
@@ -128,7 +100,7 @@
 	// 语句
 	} while (condition);
 	 
-	9. try...catch 语句使用如下形式: 
+9. try...catch 语句使用如下形式: 
 	 
 	// try..catch
 	try {
@@ -164,7 +136,8 @@
 17. 一定要记住写分号; 
  
  
-**注释**
+注释
+----------
  
 1. 文件头的注释书写: 
  
@@ -211,23 +184,8 @@
  
 7. @TODO 注释请注明大概完成日期, 不要让此注释常驻; 
  
-**数据**
+数据
+----------
  
 开发返回数据编码约定, 待定。
 
-	
-</textarea>
-
-<!-- use jQuery to convert Markdown to HTML -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-
-<script>
-$(function() {
-
-	$('<div id="preview" class="preview" />').insertAfter($('textarea')).html(new Showdown.converter().makeHtml($('textarea').val()));
-
-});
-</script>
-
-</body>
-</html>
