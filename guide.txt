@@ -1,6 +1,12 @@
 前端规范
 ==========
 
+Quick Links:
+----------
+
+[HTML][q-html], [CSS][q-css], [Javascript][q-js]
+
+<a name="HTML"></a>
 HTML:
 ----------
 
@@ -37,6 +43,7 @@ HTML:
 
 
 
+<a name="CSS"></a>
 CSS:
 ----------
 
@@ -87,6 +94,7 @@ CSS:
 
 
 
+<a name="JavaScript"></a>
 JavaScript:
 ----------
 
@@ -123,9 +131,7 @@ JavaScript:
 
 8. 将每条语句放置在一个单独的代码行中保持可读性, 不要出现 aNum++; anOtherNum++;在同一行, var 也一样; 
 
-9. 避免声明或赋值的嵌套  如 var a=(b=(c+5)+1)+3; 
-
-10. 一定要记住写分号; 
+9. 一定要记住写分号; 
 
 **命名规范**
 
@@ -133,7 +139,7 @@ JavaScript:
 
 2. 函数、方法名按描述过程或描述项的方式（动名词结合. 来命名, 以小写字母开头, 连接词使用混合大小写的驼峰形式, 例如: getAncestorByTagName; 
 
-3. 常量声明, 使用大写字母表示, 分隔单词使用下划线, 例如 var TW_GIRL = '蔡依林';
+3. 常量命名, 使用大写字母表示, 分隔单词使用下划线, 例如 var TW_GIRL = '蔡依林';
 
 4. CSS class 名声明, 使用大写字母并添加 CLASS_ 前缀, 例如 var CLASS_BOX  =  'box' ; 
 
@@ -154,60 +160,304 @@ JavaScript:
 12. 避免使用保留字或语言构造命名; 
 
 13. 尽量保持所有名称最短, 但是一定要保证名称具有描述性; 
- 
+
+
+**具体规范**
+
+1. var: 尽量在函数头部统一声明, 局部变量声明时不要丢失 var, 避免嵌套声明( var a=(b=(c+5)+1)+3 ). 例如:
+
+		var a = 1, 
+			b = 2;
+
+2. 函数声明: 不要在块( {} ) 中使用函数式声明(see ECMA-262, clause 13 and 14):
+
+		if (x) {
+		  function foo() {}
+		}
+
+   要用变量式声明:
+
+		if (x) {
+		  var foo = function() {}
+		}
+
+3. 尽量避免将基本类型转换为 object, 例如: var x = new Number(1);
+
+4. 减少闭包的使用;
+
+5. 避免使用 with() {} ;
+
+6. 避免对数组使用 for-in;
+
+7. 创建数组时尽量使用简写, 例如: var a = new Array(x), 如果 x 为数字, 则该数组可能不能达到你的预期, 正确的使用方法为:
+
+		var a = [x];
+
+8. 创建对象时尽量使用简写, 例如:
+
+		var a = {};
+
+9. 在为对象定义 toString() 方法时, 请不要对源对象进行修改;
+
+10. if...else 写法:
+
+		if (something) {
+		  // ...
+		} else if(something) {
+		  // ...
+		} else {
+		  // ...
+		}
+
+11. switch 语句写法:
+
+		switch(condition) {
+			case something:
+				//...
+			break;
+			case something:
+				//...
+			break;
+			default:
+				//...
+		}
+
+12. try ... catch 语句写法:
+
+		try {
+			//...
+		} catch(e) {};
+
+		try {
+			//...
+		} catch(e) {
+			//...
+		} finally {
+
+		}
+
+13. while 语句写法:
+
+		while(condition) {
+
+
+		}
+
+14. do ... while 语句写法:
+
+		do {
+			//...
+		} while(condition);
+
+
+15. 小数组/小对象写法:
+
+		var arr = [1, 2, 3];  // No space after [ or before ].
+		var obj = {a: 1, b: 2, c: 3};  // No space after { or before }.
+
+16. 长数组/大对象写法:
+
+		// Object initializer.
+		var inset = {
+			top: 10,
+			right: 20,
+			bottom: 15,
+			left: 12
+		};
+
+		// Array initializer.
+		this.rows_ = [
+			'"Slartibartfast" <fjordmaster@magrathea.com>',
+			'"Zaphod Beeblebrox" <theprez@universe.gov>',
+			'"Ford Prefect" <ford@theguide.com>',
+			'"Arthur Dent" <has.no.tea@gmail.com>',
+			'"Marvin the Paranoid Android" <marv@googlemail.com>',
+			'the.mice@magrathea.com'
+		];
+
+		// Used in a method call.
+		goog.dom.createDom(goog.dom.TagName.DIV, {
+			id: 'foo',
+			className: 'some-css-class',
+			style: 'display:none'
+		}, 'Hello, world!');
+
+17. 一般的函数参数尽量写在一行, 对于长参数写法如下:
+
+		// Four-space, wrap at 80.  Works with very long function names, survives
+		// renaming without reindenting, low on space.
+		goog.foo.bar.doThingThatIsVeryDifficultToExplain = function(
+			veryDescriptiveArgumentNumberOne, veryDescriptiveArgumentTwo,
+			tableModelEventHandlerProxy, artichokeDescriptorAdapterIterator) {
+		  // ...
+		};
+
+		// Four-space, one argument per line.  Works with long function names,
+		// survives renaming, and emphasizes each argument.
+		goog.foo.bar.doThingThatIsVeryDifficultToExplain = function(
+			veryDescriptiveArgumentNumberOne,
+			veryDescriptiveArgumentTwo,
+			tableModelEventHandlerProxy,
+			artichokeDescriptorAdapterIterator) {
+		  // ...
+		};
+
+		// Parenthesis-aligned indentation, wrap at 80.  Visually groups arguments,
+		// low on space.
+		function foo(veryDescriptiveArgumentNumberOne, veryDescriptiveArgumentTwo,
+					 tableModelEventHandlerProxy, artichokeDescriptorAdapterIterator) {
+		  // ...
+		}
+
+		// Parenthesis-aligned, one argument per line.  Visually groups and
+		// emphasizes each individual argument.
+		function bar(veryDescriptiveArgumentNumberOne,
+					 veryDescriptiveArgumentTwo,
+					 tableModelEventHandlerProxy,
+					 artichokeDescriptorAdapterIterator) {
+		  // ...
+		}
+
+   函数参数写法:
+
+		var names = items.map(function(item) {
+								return item.name;
+							  });
+
+		prefix.something.reallyLongFunctionName('whatever', function(a1, a2) {
+		  if (a1.equals(a2)) {
+			someOtherLongFunctionName(a1);
+		  } else {
+			andNowForSomethingCompletelyDifferent(a2.parrot);
+		  }
+		});
+
  
 **注释**
 
-1. 文件头的注释书写: 
+1. 文件头的注释: 
  
+		// Copyright 2009 Google Inc. All Rights Reserved.
+
 		/**
-		 * @fileoverview 文件用途以及简要介绍
-		 * @require 需要引入的文件名
-		 * @author shiran@taobao.com
+		 * @fileoverview Description of file, its uses and information
+		 * about its dependencies.
+		 * @author user@google.com (Firstname Lastname)
 		 */
  
 2. 类的注释: 
  
 		/**
-		 * 介绍
-		 * @class YUI
-		 * @param arg1 { String } 参数描述
-		 * @param arg2 { Array } 参数描述
+		 * Class making something fun and easy.
+		 * @param {string} arg1 An argument that makes this more interesting.
+		 * @param {Array.<number>} arg2 List of numbers to be processed.
 		 * @constructor
-		 * @extends { goog.Disposable }
+		 * @extends {goog.Disposable}
 		 */
+		project.MyClass = function(arg1, arg2) {
+		  // ...
+		};
+		goog.inherits(project.MyClass, goog.Disposable);
+
  
 3. 方法、函数注释: 
  
 		/**
-		 * 介绍
-		 * @method getData
-		 * @param arg1 { String } 参数描述
-		 * @return { String } 描述
+		 * Converts text to some completely different text.
+		 * @param {string} arg1 An argument that makes this more interesting.
+		 * @return {string} Some return value.
 		 */
+		project.MyClass.prototype.someMethod = function(arg1) {
+		  // ...
+		};
+
+		/**
+		 * Operates on an instance of MyClass and returns something.
+		 * @param {project.MyClass} obj Instance of MyClass which leads to a long
+		 *     comment that needs to be wrapped to two lines.
+		 * @return {boolean} Whether something occured.
+		 */
+		function PR_someMethod(obj) {
+		  // ...
+		}
+
  
 4. 属性注释: 
  
 		/**
-		 * 介绍
-		 * @type { Number }
+		 * Maximum number of things per pane.
+		 * @type {number}
 		 */
+		project.MyClass.prototype.someProperty = 4;
+
+5. 常量类型注释:
+
+		/** @type {number} */ (x)
+		(/** @type {number} */ x)
+
+6. 枚举类型注释:
+
+		/**
+		 * Enum for tri-state values.
+		 * @enum {number}
+		 */
+		project.TriState = {
+		  TRUE: 1,
+		  FALSE: -1,
+		  MAYBE: 0
+		};
+
+7. 需要换行的注释:
+
+		/**
+		 * This is NOT the preferred indentation method.
+		 * @param {string} foo This is a param with a description too long to fit in
+		 *                     one line.
+		 * @return {number} This returns something that has a description too long to
+		 *                  fit in one line.
+		 */
+		project.MyClass.prototype.method = function(foo) {
+		  return 5;
+		};
+
+8. 例子注释:
+
+		/**
+		 * @example
+		 * var bleeper = makeBleep(3);
+		 * bleeper.flop();
+		 */
+
  
-5. 行内或者较短注释可以使用 // 或者 /* ... */
+6. 行内或者较短注释可以使用 // 或者 /* ... */
  
-6. 多行大段描述性注释, 使用 // 来分行书写, 比如: 
+7. 多行大段描述性注释, 使用 // 来分行书写, 比如: 
  
 		//Takes a named string, hex string, array of rgb or rgba values,
 		//an object with r, g, b, and a properties, or another `dojo.Color` object
 		//and creates a new Color instance to work from.
  
-7. @TODO 注释请注明大概完成日期, 不要让此注释常驻; 
+8. @TODO 注释表示将要做的东西, 请注明大概完成日期, 不要让此注释常驻; 
+
+9. @FIXME 注释表示需要 fix 的地方, 请注明大概完成日期, 不要让此注释常驻; 
  
 数据
 ----------
  
 开发返回数据编码约定, 待定。
 
+
+参考资料:
+----------
+
+* [Google JavaScript Style Guide][gjsg]
+* [Code Style][cs]
+
 [strong&em]: http://www.css88.com/archives/644 "em和strong的区别"
 [w3-custom-data]: http://dev.w3.org/html5/spec/Overview.html#embedding-custom-non-visible-data-with-the-data-attributes "Embedding custom non-visible data with the data-* attributes"
 [css-border]: http://archivist.incutio.com/viewlist/css-discuss/6297 "[css-d] border: 0; vs. border: none;"
+[gjsg]: http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml?showone=Nested_functions#Nested_functions 
+[cs]: http://www.codestyle.org/
+[q-html]: #HTML
+[q-css]: #CSS
+[q-js]: #JavaScript
