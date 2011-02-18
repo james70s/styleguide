@@ -1,75 +1,77 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset='utf-8'>
+	<meta charset="utf-8">
+	<title>前端规范</title>
+	<style>
 
-  <title>nanzhi/styleguide @ GitHub</title>
+		html, body,
+		p, pre, code, h1, h2,
+		ul, ol, li {
+			margin:0;
+			padding:0;
+		}
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #9319b9;
-      font-family: "Helvetica,Arial,FreeSans";
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #6ce646; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #6ce646; }
-    h3 { text-align: center; color: #6ce646; }
-    a { color: #6ce646; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
+		body {
+			font-size:14px;
+			font-family:Verdana;
+			line-height:24px;
+		}
+
+		h1 {
+			font-size:30px;
+			color:green;
+			padding-bottom:20px;
+			margin-bottom:40px;
+			border-bottom:1px solid #eaeaea;
+			text-align:center;
+		}
+
+		h2 {
+			font-size:16px;
+			margin-bottom:20px;
+			color:purple;
+		}
+
+		ul, ol {
+			margin:10px 30px;
+		}
+
+		pre {
+			border:1px solid #eaeaea;
+			background-color:#fafafa;
+			padding:10px;
+			margin:10px 0;
+		}
+
+		.preview {
+			margin:20px;
+		}
+
+	</style>
 </head>
-
 <body>
-  <a href="http://github.com/nanzhi/styleguide"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
-  <div id="container">
+	<!-- use jQuery to convert Markdown to HTML -->
+	<script src="showdown.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+	<script>
+		$(function() {
 
-    <div class="download">
-      <a href="http://github.com/nanzhi/styleguide/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/nanzhi/styleguide/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
+			$.ajax({
+				url: 'guide.txt',
+				type: 'post',
+				success: function(data) {
 
-    <h1><a href="http://github.com/nanzhi/styleguide">styleguide</a>
-      <span class="small">by <a href="http://github.com/nanzhi">nanzhi</a></span></h1>
+					$('<div id="preview" class="preview" />').appendTo($('body')).html(new Showdown.converter().makeHtml(data));
 
-    <div class="description">
-      html, css, js style guide
-    </div>
+				}
+			});
 
-    <p>index.html, guide.txt</p><h2>Contact</h2>
-<p> (nanzhienai@163.com)<br/>      </p>
+		});
 
+	</script>
 
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/nanzhi/styleguide/zipball/master">zip</a> or
-      <a href="http://github.com/nanzhi/styleguide/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/nanzhi/styleguide</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/nanzhi/styleguide">nanzhi/styleguide</a>
-    </div>
-
-  </div>
-
-  
 </body>
 </html>
+
