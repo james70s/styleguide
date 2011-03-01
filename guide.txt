@@ -14,7 +14,7 @@ HTML:
 
 1. doctype 声明使用 html5:
 
-		<!doctype html>
+        <!doctype html>
 
 2. 标签以及属性名使用小写;
 
@@ -26,9 +26,12 @@ HTML:
 
 5. 对于 JS 钩子, 以 J_TheHump 的驼峰形式来命名;
 
-6. 对于普通 class 或者 id 命名, 统一使用小写字母, 第一个字符必须为字母, 例如: class="sns-box";
+6. 对于普通 class 或者 id 命名, 统一使用小写字母和“-”, 第一个字符必须为字母, 例如: class="sns-box";
 
 7. 不要在浮动元素之间插入任何内容, 包括注释, script 标签, style 标签等;( 在 ie6 下会对浮动元素造成影响 );
+        
+        例如：在淘江湖页面的布局div之间加入script标签，曾导致页面左侧部分在
+        ie6 下面不能展示
 
 8. css 引用置于头部 `<head>` 标签内;
 
