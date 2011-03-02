@@ -16,6 +16,7 @@
 			font-size:14px;
 			font-family:Verdana;
 			line-height:24px;
+			color:#666;
 		}
 
 		h1 {
@@ -37,6 +38,10 @@
 			margin:10px 30px;
 		}
 
+		li p:first-child {
+			color:#333;
+		}
+
 		pre {
 			border:1px solid #eaeaea;
 			background-color:#fafafa;
@@ -48,21 +53,194 @@
 			margin:20px;
 		}
 
+		table, th, td {
+			border:1px solid #eaeaea;
+			border-collapse:collapse;
+			width:90%;
+		}
+
+		th, td {
+			padding:10px 5px;
+		}
+
+		th {
+			white-space:nowrap;
+		}
+
+		.expand, .fold {
+			display:inline-block;
+			height:0;
+			width:0;
+			border-color:#06c transparent transparent transparent;
+		    border-style:solid;
+			border-width:5px 5px 0 5px;	
+			vertical-align:middle;
+			margin-left:5px;
+		}
+
+		.fold {
+			border-width:0 5px 5px 5px;
+			border-color:transparent transparent #06c transparent;
+		}
+
+		.hidden {
+			display:none;
+		}
+
 	</style>
 </head>
 <body>
 
 	<!-- use jQuery to convert Markdown to HTML -->
-	<script src="showdown.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+	<script src="showdown.js"></script>
 	<script>
 		$(function() {
 
+			//展开
+			function expand(el) {
+
+				var that = $(el),
+					li = $(that).parents('li')[0];
+				
+				$(that).addClass('fold');
+		
+				//判断是否需要请求
+				if('#' !== $(that).attr('href')) {
+
+								$.get(
+
+									$(that).attr('href'),
+
+									function(data) {
+
+										$('<div class="h" />').appendTo($(li)).html(data);
+
+										$(that).attr('href', '#');
+
+									}
+								);
+
+				}
+
+				show(li);
+
+			}
+
+			//收起
+			function fold(el) {
+
+				var that = $(el),
+					li = $(that).parents('li')[0];
+
+				$(that).removeClass('fold');
+
+				hide(li);
+				
+			}
+
+			//显示
+			function show(el) {
+
+				$(el).children().each(function(i, c) {
+					if( 0 !== i) {
+
+						$(c).removeClass('hidden');
+
+					}	
+				});
+
+			}
+
+			//隐藏
+			function hide(el) {
+
+				$(el).children().each(function(i, c) {
+					if( 0 !== i) {
+
+						$(c).addClass('hidden');
+
+					}	
+				});
+
+			}
+
 			$.get(
+
 				'guide.txt',
+
 				function(data) {
 
+					//插入内容
 					$('<div id="preview" class="preview" />').appendTo($('body')).html(new Showdown.converter().makeHtml(data));
+
+					//隐藏多行内容
+					$('li').each(function() {
+
+						var children = $(this).children(),
+							first = children[0];	
+
+						if(children.length > 1) {
+
+							if(0 === $(first).children('.J_Expand').length) {
+
+								$('<a href="#" class="expand J_Expand" />').appendTo($(first));	
+
+							}
+
+							hide(this);	
+
+						}
+						
+					});
+
+					//收起, 展开更多内容
+					$('.J_Expand').toggle(
+						//展开
+						function() {
+
+							expand(this);
+
+						},
+						//收起
+						function() {
+
+							fold(this);
+
+						}
+					);
+
+					//展开全部
+					$('.J_ExpandAll').toggle(
+
+						//展开
+						function() {
+
+							$(this).text('收起全部');
+
+							$('.J_Expand').each(function(i, c) {
+
+								expand(c);	
+								
+							});
+
+						},
+
+						//收起
+						function() {
+
+							$(this).text('展开全部');
+
+							$('.J_Expand').each(function(i, c) {
+
+								fold(c);
+								
+							});
+
+
+						}
+
+					);
 
 				}
 			);

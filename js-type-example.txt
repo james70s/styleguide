@@ -1,0 +1,321 @@
+<table>
+  <tbody>
+    <tr>
+      <th>类型示例</th>
+      <th>值示例</th>
+      <th>描述</th>
+    </tr>
+    <tr>
+      <td>number</td>
+      <td>
+        <div class="">
+          <pre>1
+1.0
+-5
+1e5
+Math.PI</pre>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Number</td>
+      <td>
+        <div class="">
+          <pre>new Number(true)</pre>
+        </div>
+      </td>
+      <td>
+        <a href="#Wrapper_objects_for_primitive_types">
+                    Number 对象
+                  </a>
+      </td>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td>
+        <div class="">
+          <pre>'Hello'
+"World"
+String(42)</pre>
+        </div>
+      </td>
+      <td>
+                  字符串值
+                </td>
+    </tr>
+    <tr>
+      <td>String</td>
+      <td>
+        <div class="">
+          <pre>new String('Hello')
+new String(42)</pre>
+        </div>
+      </td>
+      <td>
+        <a href="#Wrapper_objects_for_primitive_types">
+                    字符串对象
+                  </a>
+      </td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td>
+        <div class="">
+          <pre>true
+false
+Boolean(0)</pre>
+        </div>
+      </td>
+      <td>
+                  布尔值
+                </td>
+    </tr>
+    <tr>
+      <td>Boolean</td>
+      <td>
+        <div class="">
+          <pre>new Boolean(true)</pre>
+        </div>
+      </td>
+      <td>
+        <a href="#Wrapper_objects_for_primitive_types">
+                    布尔对象
+                  </a>
+      </td>
+    </tr>
+    <tr>
+      <td>RegExp</td>
+      <td>
+        <div class="">
+          <pre>new RegExp('hello')
+/world/g</pre>
+        </div>
+      </td>
+      <td>
+                </td>
+    </tr>
+    <tr>
+      <td>Date</td>
+      <td>
+        <div class="">
+          <pre>new Date
+new Date()</pre>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+                  
+                  null
+                  
+                </td>
+      <td>
+        <div class="">
+          <pre>null</pre>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+                  
+                  undefined
+                  
+                </td>
+      <td>
+        <div class="">
+          <pre>undefined</pre>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>void</td>
+      <td>
+        <div class="">
+          <pre>function f() {
+  return;
+}</pre>
+        </div>
+      </td>
+      <td>没有返回值</td>
+    </tr>
+    <tr>
+      <td>Array</td>
+      <td>
+        <div class="">
+          <pre>['foo', 0.3, null]
+[]</pre>
+        </div>
+      </td>
+      <td>类型不明确的数组</td>
+    </tr>
+    <tr>
+      <td>Array.<number></td>
+      <td>
+        <div class="">
+          <pre>[11, 22, 33]</pre>
+        </div>
+      </td>
+      <td>
+                  整型数组
+                </td>
+    </tr>
+    <tr>
+      <td>Array.<Array.<string>></td>
+      <td>
+        <div class="">
+          <pre>[['one', 'two', 'three'], ['foo', 'bar']]</pre>
+        </div>
+      </td>
+      <td>字符串数组的数组</td>
+    </tr>
+    <tr>
+      <td>Object</td>
+      <td>
+        <div class="">
+          <pre>{}
+{foo: 'abc', bar: 123, baz: null}</pre>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Object.<string></td>
+      <td>
+        <div class="">
+          <pre>{'foo': 'bar'}</pre>
+        </div>
+      </td>
+      <td>
+                  值为字符串的对象.
+                </td>
+    </tr>
+    <tr>
+      <td>Object.<number, string></td>
+      <td>
+        <div class="">
+          <pre>var obj = {};
+obj[1] = 'bar';</pre>
+        </div>
+      </td>
+      <td>
+        
+                 键为整数, 值为字符串的对象.  
+        <p></p>
+        注意, JavaScript 中, 键总是被转换成字符串, 所以
+                  
+        <code>obj['1'] == obj[1]</code>
+        .
+                  也所以, 键在 for...in 循环中是字符串类型. 但在编译器中会明确根据键的类型来查找对象.
+                
+      </td>
+    </tr>
+    <tr>
+      <td>Function</td>
+      <td>
+        <div class="">
+          <pre>function(x, y) {
+  return x * y;
+}</pre>
+        </div>
+      </td>
+      <td>
+        <a href="#Wrapper_objects_for_primitive_types">
+                    函数对象
+                  </a>
+      </td>
+    </tr>
+    <tr>
+      <td>function(number, number): number</td>
+      <td>
+        <div class="">
+          <pre>function(x, y) {
+  return x * y;
+}</pre>
+        </div>
+      </td>
+      <td>函数值</td>
+    </tr>
+    <tr>
+      <td>SomeClass</td>
+      <td>
+        <div class="">
+          <pre>/** @constructor */
+function SomeClass() {}
+
+new SomeClass();</pre>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SomeInterface</td>
+      <td>
+        <div class="">
+          <pre>/** @interface */
+function SomeInterface() {}
+
+SomeInterface.prototype.draw = function() {};</pre>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>project.MyClass</td>
+      <td>
+        <div class="">
+          <pre>/** @constructor */
+project.MyClass = function () {}
+
+new project.MyClass()</pre>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>project.MyEnum</td>
+      <td>
+        <div class="">
+          <pre>/** @enum {string} */
+project.MyEnum = {
+  BLUE: '#0000dd',
+  RED: '#dd0000'
+};</pre>
+        </div>
+      </td>
+      <td>
+        <a href="#enums">枚举</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Element</td>
+      <td>
+        <div class="">
+          <pre>document.createElement('div')</pre>
+        </div>
+      </td>
+      <td>DOM 中的元素</td>
+    </tr>
+    <tr>
+      <td>Node</td>
+      <td>
+        <div class="">
+          <pre>document.body.firstChild</pre>
+        </div>
+      </td>
+      <td>DOM 中的节点.</td>
+    </tr>
+    <tr>
+      <td>HTMLInputElement</td>
+      <td>
+        <div class="">
+          <pre>htmlDocument.getElementsByTagName('input')[0]</pre>
+        </div>
+      </td>
+      <td>DOM 中, 特定类型的元素.</td>
+    </tr>
+  </tbody>
+</table>
