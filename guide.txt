@@ -8,7 +8,7 @@
 Quick Links:
 ----------
 
-[HTML][q-html], [CSS][q-css], [Javascript][q-js]
+[HTML][q-html], [CSS][q-css], [Javascript][q-js], <a href="#" class="J_ExpandAll">展开全部</a>
 
 <a name="HTML"></a>
 HTML:
@@ -258,7 +258,7 @@ JavaScript:
 			  ...
 			};
 
-   许多 JavaScript 库, 包括 the Closure Library and Dojo toolkit 为你提供了声明你自己的命名空间的函数. 比如: 
+   许多 JavaScript 库, 包括 [the Closure Library][Closure Library] and [Dojo toolkit][Dojo] 为你提供了声明你自己的命名空间的函数. 比如: 
 
 		goog.provide('sloth');
 
@@ -732,13 +732,13 @@ JavaScript:
 
 2. 延迟初始化: 可以 
 
-没必要在每次声明变量时就将其初始化.
+   没必要在每次声明变量时就将其初始化.
 
 3. 明确作用域: 任何时候都需要 
 
-任何时候都要明确作用域 - 提高可移植性和清晰度. 例如, 不要依赖于作用域链中的 window 对象. 可能在其他应用中, 你函数中的 window 不是指之前的那个窗口对象.
+   任何时候都要明确作用域 - 提高可移植性和清晰度. 例如, 不要依赖于作用域链中的 window 对象. 可能在其他应用中, 你函数中的 window 不是指之前的那个窗口对象.
 
-4. 代码格式化: 主要依照C++ 格式规范 ( 中文版 ), 针对 JavaScript, 还有下面一些附加说明.
+4. 代码格式化: 主要依照C++ 格式规范 ( [中文版][c-style-cn] ), 针对 JavaScript, 还有下面一些附加说明.
 
 	* 大括号: 分号会被隐式插入到代码中, 所以你务必在同一行上插入大括号. 例如:
 
@@ -1055,582 +1055,12 @@ JavaScript:
 
    如果使用 JSDoc, 那么尽量具体地, 准确地根据它的规则来书写类型说明. 目前支持两种 JS2 和 JS1.x 类型规范.
 
-   * JavaScript 类型语言
+   * JavaScript 类型语言 <a href="js-type.txt" class="expand J_Expand"></a>
 
      S2 提议中包含了一种描述 JavaScript 类型的规范语法, 这里我们在 JSDoc 中采用其来描述函数参数和返回值的类型.
      JSDoc 的类型语言, 按照 JS2 规范, 也进行了适当改变, 但编译器仍然支持旧语法.
 
-<table cellpadding="4" style="border-collapse:collapse" border="1">
-  <tbody>
-	<tr>
-	  <th>名称</th>
-	  <th>语法</th>
-	  <th>描述</th>
-	  <th>弃用语法</th>
-	</tr>
-	<tr>
-	  <td>普通类型</td>
-	  <td>
-		<code>{boolean}</code>
-		, 
-		<code>{Window}</code>
-		,
-				  
-		<code>{goog.ui.Menu}</code>
-	  </td>
-	  <td>普通类型的描述方法.</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>复杂类型</td>
-	  <td>
-		<code>{Array.<string>}</code>
-		<br>
-		字符串数组.
-		<p></p>
-		<code>{Object.<string, number>}</code>
-		<br>
-		键为字符串, 值为整数的对象类型.
-				
-	  </td>
-	  <td>参数化类型, 即指定了该类型中包含的一系列"类型参数". 类似于 Java 中的泛型.
-				</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>联合类型</td>
-	  <td>
-		<code>{(number|boolean)}</code>
-		<br>
-		一个整数或者布尔值.
-				
-	  </td>
-	  <td>表示其值可能是 A 类型, 也可能是 B 类型</td>
-	  <td>
-		<code>{(number,boolean)}</code>
-		,
-				  
-		<code>{number|boolean}</code>
-		,
-				  
-		<code>{(number||boolean)}</code>
-	  </td>
-	</tr>
-	<tr>
-	  <td>记录类型</td>
-	  <td>
-		<code>{{myNum: number, myObject}}</code>
-		<br>
-		由现有类型组成的类型.
-				
-	  </td>
-	  <td>
-		<p>
-		  表示包含指定成员及类型的值. 这个例子中, 
-		  <code>myNum</code>
-		   为 
-		  <code>number</code>
-		   类型, 
-		  <code>myObject</code>
-		   为任意类型.
-		</p>
-		<p>
-		  注意大括号为类型语法的一部分. 比如, 
-		  <code>Array.<{length}></code>
-		  ,
-					  表示一具有 
-		  <code>length</code>
-		   属性的 
-		  <code>Array</code>
-		   对象.
-		</p>
-	  </td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>可为空类型</td>
-	  <td>
-		<code>{?number}</code>
-		<br>
-		 一个整型数或者为 NULL
-				
-	  </td>
-	  <td>
-		表示一个值可能是 A 类型或者 
-		<code>null</code>
-		.
-				  默认, 每个对象都是可为空的. 注意: 函数类型不可为空.
-				
-	  </td>
-	  <td>
-		<code>{number?}</code>
-	  </td>
-	</tr>
-	<tr>
-	  <td>非空类型</td>
-	  <td>
-		<code>{!Object}</code>
-		<br>
-		 一个对象, 但绝不会是 
-		<code>null</code>
-		 值.
-				
-	  </td>
-	  <td>说明一个值是类型 A 且肯定不是 null.
-					默认情况下, 所有值类型 (boolean, number, string, 和 undefined) 不可为空.
-				</td>
-	  <td>
-		<code>{Object!}</code>
-	  </td>
-	</tr>
-	<tr>
-	  <td>函数类型</td>
-	  <td>
-		<code>{function(string, boolean)}</code>
-		<br>
-		
-				  具有两个参数 ( string 和 boolean) 的函数类型, 返回值未知.
-		<br>
-	  </td>
-	  <td>说明一个函数.</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>函数返回类型</td>
-	  <td>
-		<code>{function(): number}</code>
-		<br>
-		
-				  函数返回一个整数.
-		<br>
-	  </td>
-	  <td>说明函数的返回类型.</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>
-		函数的 
-		<code>this</code>
-		 类型
-	  </td>
-	  <td>
-		<code>{function(this:goog.ui.Menu, string)}</code>
-		<br>
-		
-				  函数只带一个参数 (string), 并且在上下文 goog.ui.Menu 中执行.
-				
-	  </td>
-	  <td>说明函数类型的上下文类型.</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>可变参数</td>
-	  <td>
-		<code>{function(string, ...[number]): number}</code>
-		<br>
-		
-				  带一个参数 (字符类型) 的函数类型, 并且函数的参数个数可变, 但参数类型必须为 number.
-				
-	  </td>
-	  <td>说明函数的可变长参数.</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>
-		<a name="var-args-annotation"></a>
-		
-				  可变长的参数 (使用 
-		<code>@param</code>
-		 标记)
-				
-	  </td>
-	  <td>
-		<code>@param {...number} var_args</code>
-		<br>
-		
-				  函数参数个数可变.
-				
-	  </td>
-	  <td>
-				  使用标记, 说明函数具有不定长参数.
-				</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>
-		函数的 
-		<a href="optional">缺省参数</a>
-	  </td>
-	  <td>
-		<code>{function(?string=, number=)}</code>
-		<br>
-		
-				  函数带一个可空且可选的字符串型参数, 一个可选整型参数. 
-		<code>=</code>
-		 语法只针对 
-		<code>function</code>
-		 类型有效.
-				
-	  </td>
-	  <td>说明函数的可选参数.</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>
-		<a name="optional-arg-annotation"></a>
-		
-				  函数 
-		<a href="optional">可选参数</a>
-		
-				  (使用 
-		<code>@param</code>
-		 标记)
-				
-	  </td>
-	  <td>
-		<code>@param {number=} opt_argument</code>
-		<br>
-		<code>number</code>
-		类型的可选参数.
-				
-	  </td>
-	  <td>使用标记, 说明函数具有可选参数.</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>所有类型</td>
-	  <td>
-		<code>{*}</code>
-	  </td>
-	  <td>表示变量可以是任何类型.</td>
-	  <td></td>
-	</tr>
-  </tbody>
-</table>
-
-   * JavaScript中的类型
-
-<table cellpadding="4" style="border-collapse:collapse" border="1">
-  <tbody>
-    <tr>
-      <th>类型示例</th>
-      <th>值示例</th>
-      <th>描述</th>
-    </tr>
-    <tr>
-      <td>number</td>
-      <td>
-        <div class="">
-          <pre>1
-1.0
--5
-1e5
-Math.PI</pre>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Number</td>
-      <td>
-        <div class="">
-          <pre>new Number(true)</pre>
-        </div>
-      </td>
-      <td>
-        <a href="#Wrapper_objects_for_primitive_types">
-                    Number 对象
-                  </a>
-      </td>
-    </tr>
-    <tr>
-      <td>string</td>
-      <td>
-        <div class="">
-          <pre>'Hello'
-"World"
-String(42)</pre>
-        </div>
-      </td>
-      <td>
-                  字符串值
-                </td>
-    </tr>
-    <tr>
-      <td>String</td>
-      <td>
-        <div class="">
-          <pre>new String('Hello')
-new String(42)</pre>
-        </div>
-      </td>
-      <td>
-        <a href="#Wrapper_objects_for_primitive_types">
-                    字符串对象
-                  </a>
-      </td>
-    </tr>
-    <tr>
-      <td>boolean</td>
-      <td>
-        <div class="">
-          <pre>true
-false
-Boolean(0)</pre>
-        </div>
-      </td>
-      <td>
-                  布尔值
-                </td>
-    </tr>
-    <tr>
-      <td>Boolean</td>
-      <td>
-        <div class="">
-          <pre>new Boolean(true)</pre>
-        </div>
-      </td>
-      <td>
-        <a href="#Wrapper_objects_for_primitive_types">
-                    布尔对象
-                  </a>
-      </td>
-    </tr>
-    <tr>
-      <td>RegExp</td>
-      <td>
-        <div class="">
-          <pre>new RegExp('hello')
-/world/g</pre>
-        </div>
-      </td>
-      <td>
-                </td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>
-        <div class="">
-          <pre>new Date
-new Date()</pre>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-                  
-                  null
-                  
-                </td>
-      <td>
-        <div class="">
-          <pre>null</pre>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-                  
-                  undefined
-                  
-                </td>
-      <td>
-        <div class="">
-          <pre>undefined</pre>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>void</td>
-      <td>
-        <div class="">
-          <pre>function f() {
-  return;
-}</pre>
-        </div>
-      </td>
-      <td>没有返回值</td>
-    </tr>
-    <tr>
-      <td>Array</td>
-      <td>
-        <div class="">
-          <pre>['foo', 0.3, null]
-[]</pre>
-        </div>
-      </td>
-      <td>类型不明确的数组</td>
-    </tr>
-    <tr>
-      <td>Array.<number></td>
-      <td>
-        <div class="">
-          <pre>[11, 22, 33]</pre>
-        </div>
-      </td>
-      <td>
-                  整型数组
-                </td>
-    </tr>
-    <tr>
-      <td>Array.<Array.<string>></td>
-      <td>
-        <div class="">
-          <pre>[['one', 'two', 'three'], ['foo', 'bar']]</pre>
-        </div>
-      </td>
-      <td>字符串数组的数组</td>
-    </tr>
-    <tr>
-      <td>Object</td>
-      <td>
-        <div class="">
-          <pre>{}
-{foo: 'abc', bar: 123, baz: null}</pre>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Object.<string></td>
-      <td>
-        <div class="">
-          <pre>{'foo': 'bar'}</pre>
-        </div>
-      </td>
-      <td>
-                  值为字符串的对象.
-                </td>
-    </tr>
-    <tr>
-      <td>Object.<number, string></td>
-      <td>
-        <div class="">
-          <pre>var obj = {};
-obj[1] = 'bar';</pre>
-        </div>
-      </td>
-      <td>
-        
-                 键为整数, 值为字符串的对象.  
-        <p></p>
-        注意, JavaScript 中, 键总是被转换成字符串, 所以
-                  
-        <code>obj['1'] == obj[1]</code>
-        .
-                  也所以, 键在 for...in 循环中是字符串类型. 但在编译器中会明确根据键的类型来查找对象.
-                
-      </td>
-    </tr>
-    <tr>
-      <td>Function</td>
-      <td>
-        <div class="">
-          <pre>function(x, y) {
-  return x * y;
-}</pre>
-        </div>
-      </td>
-      <td>
-        <a href="#Wrapper_objects_for_primitive_types">
-                    函数对象
-                  </a>
-      </td>
-    </tr>
-    <tr>
-      <td>function(number, number): number</td>
-      <td>
-        <div class="">
-          <pre>function(x, y) {
-  return x * y;
-}</pre>
-        </div>
-      </td>
-      <td>函数值</td>
-    </tr>
-    <tr>
-      <td>SomeClass</td>
-      <td>
-        <div class="">
-          <pre>/** @constructor */
-function SomeClass() {}
-
-new SomeClass();</pre>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>SomeInterface</td>
-      <td>
-        <div class="">
-          <pre>/** @interface */
-function SomeInterface() {}
-
-SomeInterface.prototype.draw = function() {};</pre>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>project.MyClass</td>
-      <td>
-        <div class="">
-          <pre>/** @constructor */
-project.MyClass = function () {}
-
-new project.MyClass()</pre>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>project.MyEnum</td>
-      <td>
-        <div class="">
-          <pre>/** @enum {string} */
-project.MyEnum = {
-  BLUE: '#0000dd',
-  RED: '#dd0000'
-};</pre>
-        </div>
-      </td>
-      <td>
-        <a href="#enums">枚举</a>
-      </td>
-    </tr>
-    <tr>
-      <td>Element</td>
-      <td>
-        <div class="">
-          <pre>document.createElement('div')</pre>
-        </div>
-      </td>
-      <td>DOM 中的元素</td>
-    </tr>
-    <tr>
-      <td>Node</td>
-      <td>
-        <div class="">
-          <pre>document.body.firstChild</pre>
-        </div>
-      </td>
-      <td>DOM 中的节点.</td>
-    </tr>
-    <tr>
-      <td>HTMLInputElement</td>
-      <td>
-        <div class="">
-          <pre>htmlDocument.getElementsByTagName('input')[0]</pre>
-        </div>
-      </td>
-      <td>DOM 中, 特定类型的元素.</td>
-    </tr>
-  </tbody>
-</table>
+   * JavaScript中的类型  <a href="js-type-example.txt" class="expand J_Expand"></a>
 
    * 可空 vs. 可选 参数和属性
 
@@ -1721,13 +1151,13 @@ project.MyEnum = {
  
 **注释**
 
-我们使用 JSDoc 中的注释风格. 行内注释使用 // 变量 的形式. 另外, 我们也遵循 C++ 代码注释风格 . 这也就是说你需要: 
+我们使用 [JSDoc][jsdoc] 中的注释风格. 行内注释使用 // 变量 的形式. 另外, 我们也遵循 [C++ 代码注释风格][c-style-cn] . 这也就是说你需要: 
 
-	* 版权和著作权的信息,
-	* 文件注释中应该写明该文件的基本信息(如, 这段代码的功能摘要, 如何使用, 与哪些东西相关), 来告诉那些不熟悉代码的读者.
-	* 类, 函数, 变量和必要的注释,
-	* 期望在哪些浏览器中执行,
-	* 正确的大小写, 标点和拼写.
+* 版权和著作权的信息,
+* 文件注释中应该写明该文件的基本信息(如, 这段代码的功能摘要, 如何使用, 与哪些东西相关), 来告诉那些不熟悉代码的读者.
+* 类, 函数, 变量和必要的注释,
+* 期望在哪些浏览器中执行,
+* 正确的大小写, 标点和拼写.
 
 为了避免出现句子片段, 请以合适的大/小写单词开头, 并以合适的标点符号结束这个句子.
 
@@ -1834,7 +1264,24 @@ project.MyEnum = {
 		  // ...
 		};
 
-7. 需要换行的注释:
+7. JSDoc 缩进 
+
+   如果你在 @param, @return, @supported, @this 或 @deprecated 中断行, 需要像在代码中一样, 使用4个空格作为一个缩进层次.
+
+		/**
+		 * Illustrates line wrapping for long param/return descriptions.
+		 * @param {string} foo This is a param with a description too long to fit in
+		 *     one line.
+		 * @return {number} This returns something that has a description too long to
+		 *     fit in one line.
+		 */
+		project.MyClass.prototype.method = function(foo) {
+		  return 5;
+		};
+
+   不要在 @fileoverview 标记中进行缩进.
+
+   虽然不建议, 但也可对说明文字进行适当的排版对齐. 不过, 这样带来一些负面影响, 就是当你每次修改变量名时, 都得重新排版说明文字以保持和变量名对齐.
 
 		/**
 		 * This is NOT the preferred indentation method.
@@ -1882,18 +1329,88 @@ project.MyEnum = {
 		...
 		};
 
- 
-6. 行内或者较短注释可以使用 // 或者 /* ... */
- 
-7. 多行大段描述性注释, 使用 // 来分行书写, 比如: 
- 
-		//Takes a named string, hex string, array of rgb or rgba values,
-		//an object with r, g, b, and a properties, or another `dojo.Color` object
-		//and creates a new Color instance to work from.
- 
-8. @TODO 注释表示将要做的东西, 请注明大概完成日期, 不要让此注释常驻; 
+10. JSDoc 标记表 <a href="jsdoc-tag.txt" class="expand J_Expand"></a>
 
-9. @FIXME 注释表示需要 fix 的地方, 请注明大概完成日期, 不要让此注释常驻; 
+11. 在第三方代码中, 你还会见到其他一些 JSDoc 标记. 这些标记在 [JSDoc Toolkit Tag Reference][jsdoc-tag] 都有介绍到, 但在 Google 的代码中, 目前不推荐使用. 你可以认为这些是将来会用到的 "保留" 名. 它们包含: 
+
+	* @augments
+	* @argument
+	* @borrows
+	* @class
+	* @constant
+	* @constructs
+	* @default
+	* @event
+	* @example
+	* @field
+	* @function
+	* @ignore
+	* @inner
+	* @link
+	* @memberOf
+	* @name
+	* @namespace
+	* @property
+	* @public
+	* @requires
+	* @returns
+	* @since
+	* @static
+	* @version
+
+12. JSDoc 中的 HTML
+ 
+	类似于 JavaDoc, JSDoc 支持许多 HTML 标签, 如 `<code>, <pre>, <tt>, <strong>, <ul>, <ol>, <li>, <a>,` 等等.
+
+	这就是说 JSDoc 不会完全依照纯文本中书写的格式. 所以, 不要在 JSDoc 中, 使用空白字符来做格式化:
+
+		/**
+		 * Computes weight based on three factors:
+		 *   items sent
+		 *   items received
+		 *   last timestamp
+		 */
+
+	上面的注释, 出来的结果是:
+
+		Computes weight based on three factors: items sent items received items received 
+
+	应该这样写:
+
+		/**
+		 * Computes weight based on three factors:
+		 * <ul>
+		 * <li>items sent
+		 * <li>items received
+		 * <li>last timestamp
+		 * </ul>
+		 */
+
+	另外, 也不要包含任何 HTML 或类 HTML 标签, 除非你就想让它们解析成 HTML 标签.
+
+		/**
+		 * Changes <b> tags to <span> tags.
+		 */
+
+	出来的结果是:
+
+		Changes tags to tags. 
+
+	另外, 也应该在源代码文件中让其他人更可读, 所以不要过于使用 HTML 标签:
+
+		/**
+		 * Changes &lt;b&gt; tags to &lt;span&gt; tags.
+		 */
+
+	上面的代码中, 其他人就很难知道你想干嘛, 直接改成下面的样子就清楚多了:
+
+		/**
+		 * Changes 'b' tags to 'span' tags.
+		 */
+
+13. @TODO 注释表示将要做的东西, 请注明大概完成日期, 不要让此注释常驻; 
+
+14. @FIXME 注释表示需要 fix 的地方, 请注明大概完成日期, 不要让此注释常驻; 
  
 数据
 ----------
@@ -1905,13 +1422,20 @@ project.MyEnum = {
 ----------
 
 * [Google JavaScript Style Guide][gjsg]
+* [Google JavaScript Style Guide 中文版][gjsg-cn]
 * [Code Style][cs]
 
 [strong&em]: http://www.css88.com/archives/644 "em和strong的区别"
 [w3-custom-data]: http://dev.w3.org/html5/spec/Overview.html#embedding-custom-non-visible-data-with-the-data-attributes "Embedding custom non-visible data with the data-* attributes"
 [css-border]: http://archivist.incutio.com/viewlist/css-discuss/6297 "[css-d] border: 0; vs. border: none;"
 [gjsg]: http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml?showone=Nested_functions#Nested_functions 
+[gjsg-cn]: http://docs.kissyui.com/docs/html/styleguide/google/javascriptguide.xml
 [cs]: http://www.codestyle.org/
 [q-html]: #HTML
 [q-css]: #CSS
 [q-js]: #JavaScript
+[Closure Library]: http://code.google.com/closure/library/
+[Dojo]: http://www.dojotoolkit.org/
+[c-style-cn]: http://yangyubo.com/google-cpp-styleguide/formatting.html
+[jsdoc]: http://code.google.com/p/jsdoc-toolkit/
+[jsdoc-tag]: http://code.google.com/p/jsdoc-toolkit/wiki/TagReference

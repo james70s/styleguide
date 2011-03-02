@@ -1,0 +1,248 @@
+<table>
+  <tbody>
+	<tr>
+	  <th>名称</th>
+	  <th>语法</th>
+	  <th>描述</th>
+	  <th>弃用语法</th>
+	</tr>
+	<tr>
+	  <td>普通类型</td>
+	  <td>
+		<code>{boolean}</code>
+		, 
+		<code>{Window}</code>
+		,
+				  
+		<code>{goog.ui.Menu}</code>
+	  </td>
+	  <td>普通类型的描述方法.</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>复杂类型</td>
+	  <td>
+		<code>{Array.<string>}</code>
+		<br>
+		字符串数组.
+		<p></p>
+		<code>{Object.<string, number>}</code>
+		<br>
+		键为字符串, 值为整数的对象类型.
+				
+	  </td>
+	  <td>参数化类型, 即指定了该类型中包含的一系列"类型参数". 类似于 Java 中的泛型.
+				</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>联合类型</td>
+	  <td>
+		<code>{(number|boolean)}</code>
+		<br>
+		一个整数或者布尔值.
+				
+	  </td>
+	  <td>表示其值可能是 A 类型, 也可能是 B 类型</td>
+	  <td>
+		<code>{(number,boolean)}</code>
+		,
+				  
+		<code>{number|boolean}</code>
+		,
+				  
+		<code>{(number||boolean)}</code>
+	  </td>
+	</tr>
+	<tr>
+	  <td>记录类型</td>
+	  <td>
+		<code>{{myNum: number, myObject}}</code>
+		<br>
+		由现有类型组成的类型.
+				
+	  </td>
+	  <td>
+		<p>
+		  表示包含指定成员及类型的值. 这个例子中, 
+		  <code>myNum</code>
+		   为 
+		  <code>number</code>
+		   类型, 
+		  <code>myObject</code>
+		   为任意类型.
+		</p>
+		<p>
+		  注意大括号为类型语法的一部分. 比如, 
+		  <code>Array.<{length}></code>
+		  ,
+					  表示一具有 
+		  <code>length</code>
+		   属性的 
+		  <code>Array</code>
+		   对象.
+		</p>
+	  </td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>可为空类型</td>
+	  <td>
+		<code>{?number}</code>
+		<br>
+		 一个整型数或者为 NULL
+				
+	  </td>
+	  <td>
+		表示一个值可能是 A 类型或者 
+		<code>null</code>
+		.
+				  默认, 每个对象都是可为空的. 注意: 函数类型不可为空.
+				
+	  </td>
+	  <td>
+		<code>{number?}</code>
+	  </td>
+	</tr>
+	<tr>
+	  <td>非空类型</td>
+	  <td>
+		<code>{!Object}</code>
+		<br>
+		 一个对象, 但绝不会是 
+		<code>null</code>
+		 值.
+				
+	  </td>
+	  <td>说明一个值是类型 A 且肯定不是 null.
+					默认情况下, 所有值类型 (boolean, number, string, 和 undefined) 不可为空.
+				</td>
+	  <td>
+		<code>{Object!}</code>
+	  </td>
+	</tr>
+	<tr>
+	  <td>函数类型</td>
+	  <td>
+		<code>{function(string, boolean)}</code>
+		<br>
+		
+				  具有两个参数 ( string 和 boolean) 的函数类型, 返回值未知.
+		<br>
+	  </td>
+	  <td>说明一个函数.</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>函数返回类型</td>
+	  <td>
+		<code>{function(): number}</code>
+		<br>
+		
+				  函数返回一个整数.
+		<br>
+	  </td>
+	  <td>说明函数的返回类型.</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>
+		函数的 
+		<code>this</code>
+		 类型
+	  </td>
+	  <td>
+		<code>{function(this:goog.ui.Menu, string)}</code>
+		<br>
+		
+				  函数只带一个参数 (string), 并且在上下文 goog.ui.Menu 中执行.
+				
+	  </td>
+	  <td>说明函数类型的上下文类型.</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>可变参数</td>
+	  <td>
+		<code>{function(string, ...[number]): number}</code>
+		<br>
+		
+				  带一个参数 (字符类型) 的函数类型, 并且函数的参数个数可变, 但参数类型必须为 number.
+				
+	  </td>
+	  <td>说明函数的可变长参数.</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>
+		<a name="var-args-annotation"></a>
+		
+				  可变长的参数 (使用 
+		<code>@param</code>
+		 标记)
+				
+	  </td>
+	  <td>
+		<code>@param {...number} var_args</code>
+		<br>
+		
+				  函数参数个数可变.
+				
+	  </td>
+	  <td>
+				  使用标记, 说明函数具有不定长参数.
+				</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>
+		函数的 
+		<a href="optional">缺省参数</a>
+	  </td>
+	  <td>
+		<code>{function(?string=, number=)}</code>
+		<br>
+		
+				  函数带一个可空且可选的字符串型参数, 一个可选整型参数. 
+		<code>=</code>
+		 语法只针对 
+		<code>function</code>
+		 类型有效.
+				
+	  </td>
+	  <td>说明函数的可选参数.</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>
+		<a name="optional-arg-annotation"></a>
+		
+				  函数 
+		<a href="optional">可选参数</a>
+		
+				  (使用 
+		<code>@param</code>
+		 标记)
+				
+	  </td>
+	  <td>
+		<code>@param {number=} opt_argument</code>
+		<br>
+		<code>number</code>
+		类型的可选参数.
+				
+	  </td>
+	  <td>使用标记, 说明函数具有可选参数.</td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>所有类型</td>
+	  <td>
+		<code>{*}</code>
+	  </td>
+	  <td>表示变量可以是任何类型.</td>
+	  <td></td>
+	</tr>
+  </tbody>
+</table>
+
