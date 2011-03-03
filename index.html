@@ -174,25 +174,30 @@
 					//插入内容
 					$('<div id="preview" class="preview" />').appendTo($('body')).html(new Showdown.converter().makeHtml(data));
 
-					//隐藏多行内容
-					$('li').each(function() {
+					//对于 ie6/7 不做处理
+					if(!$.browser.msie || $.browser.version >= 8) {
 
-						var children = $(this).children(),
-							first = children[0];	
+						//隐藏多行内容
+						$('li').each(function() {
 
-						if(children.length > 1) {
+							var children = $(this).children(),
+								first = children[0];	
 
-							if(0 === $(first).children('.J_Expand').length) {
+							if(children.length > 1) {
 
-								$('<a href="#" class="expand J_Expand" />').appendTo($(first));	
+								if(0 === $(first).children('.J_Expand').length) {
+
+									$('<a href="#" class="expand J_Expand" />').appendTo($(first));	
+
+								}
+
+								hide(this);	
 
 							}
+							
+						});
 
-							hide(this);	
-
-						}
-						
-					});
+					}
 
 					//收起, 展开更多内容
 					$('.J_Expand').toggle(
@@ -210,7 +215,10 @@
 						}
 					);
 
+					if($.browser.msie && $.browser.version < 8) return false;
+
 					//展开全部
+					$('.J_ExpandAll').text('展开全部');
 					$('.J_ExpandAll').toggle(
 
 						//展开

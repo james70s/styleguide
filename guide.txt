@@ -8,7 +8,7 @@
 Quick Links:
 ----------
 
-[HTML][q-html], [CSS][q-css], [Javascript][q-js], <a href="#" class="J_ExpandAll">展开全部</a>
+[HTML][q-html], [CSS][q-css], [Javascript][q-js], <a href="#" class="J_ExpandAll"></a>
 
 <a name="HTML"></a>
 HTML:
@@ -1516,7 +1516,18 @@ JavaScript:
 数据
 ----------
  
-开发返回数据编码约定, 待定. 
+1. 返回的数据以标准的 JSON 格式来书写:
+
+		{
+			"result": {
+				"name": "jolin",
+				"age": 30,
+				"other": [1, 2]
+			},
+			"status": "1",
+			"msg": "系统错误, 请稍候再试"			
+		}
+
 
 
 参考资料:
