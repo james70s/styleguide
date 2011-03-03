@@ -38,6 +38,34 @@ HTML:
 
 9. js 引用置于底部 `</body>` 标签前;
 
+10. 非特殊的页面都要使用gbk编码;
+
+11. 常用的一个页面的html结构参考：
+        
+        <!doctype html>
+        <html>
+        <head>
+            <meta charset="gbk" />
+            <title>标题</title>
+            <link href="style.css" type="text/css" rel="stylesheet" />
+            <script src="some_core_script.js"></script>
+        </head>
+        <body>
+            <div id="page">
+                <div id="header">
+                ...
+                </div>
+                <div id="content">
+                ...
+                </div>
+                <div id="footer">
+                ...
+                </div>
+            </div>
+            <script src="script.js"></script>
+        </body>
+        </html>
+
 
 **标签使用**
 
@@ -54,6 +82,45 @@ HTML:
 6. `<b>` 标签用来显示边框(border);
 
 7. `<iframe>` 标签尽量少用;
+
+8. `<meta>`标签要放在`<head>`标签的第一个子节点;(放在title后面会导致一些奇怪问题
+的发生);
+
+9. 当 link 元素用于引用CSS文档时，默认 media 是 screen，如为特殊终端提供样式，请指定 media 属性，如 media=“print”;
+
+10. `<img>`标签要加上alt属性(alt 属性是一个必需的属性，它规定在图像无法显示时的替代文本。)
+
+11. `<a>`标签里若只包含图片要加上title属性(title 属性规定关于元素的额外信息。这些信息通常会在鼠标移到元素上时显示一段工具提示文本。)
+
+12. `<a>`链接的href属性一般要加上具体的链接，不要使用空链接#和javascript:void(0);
+
+13. 对于表单控件对应的文本必须使用 `<label>` 元素标记，且使用 for 属性指向该控件id;
+
+**标签嵌套规范**
+
+1. 块元素可以包含内联元素或某些块元素，但内联元素却不能包含块元素，它只能包含其它的内联元素：
+
+        <div><h1></h1><p></p></div> —— 对
+        <a href=”#”><span></span></a> —— 对
+        <span><div></div></span> —— 错
+
+2. 块级元素不能放在`<p>`里面：
+
+        <p><ol><li></li></ol></p> —— 错
+        <p><div></div></p> —— 错
+
+3. 有几个特殊的块级元素只能包含内嵌元素，不能再包含块级元素，这几个特殊的标签是：
+
+        h1、h2、h3、h4、h5、h6、p、dt。
+
+4. `<li>` 内可以包含 `<div>` 标签
+
+5. 块级元素与块级元素并列、内嵌元素与内嵌元素并列：
+
+        <div><h2></h2><p></p></div> —— 对
+        <div><a href=”#”></a><span></span></div> —— 对
+        <div><h2></h2><span></span></div> —— 错
+
 
 **注释规范**
 
@@ -100,6 +167,11 @@ HTML:
 		<!--[if !IE]><!-->
 		<!--<![endif]-->
 
+**其他注意事项**
+
+1. 非发布日，因紧急需求加入页面的style和script，应在下一次发布时，加到对应的css文件或是js文件里面;
+
+2. 页面的footer部分很多时候都被开发作为公用部分，有一些js文件的位置可以酌情放在content部分
 
 <a name="CSS"></a>
 CSS:
@@ -151,6 +223,26 @@ CSS:
 
 3. 在使用 CSS expression 时一定要检测性能, 尽量避免使用;
 
+4. CSS属性书写顺序参考
+        
+        /*
+         * display
+         * float
+         * position
+         * z-index
+         * width
+         * height
+         * overflow
+         * left(right)
+         * top(bottom)
+         * text-xxx
+         * font-xxx
+         * color
+         * border
+         * background
+         * cursor
+         */
+
 **注释规范**
 
 1. 文件头注释:
@@ -180,6 +272,15 @@ CSS:
 
 		background-color: transparent; /* flexible background gradient */
 		font-family: serif; /* text floating bug in ie6 */
+
+4. 修改别人的 CSS 请添加注释
+        
+        /* modified by qiaofu 2011-03-03 */
+
+
+**其他注意事项**
+
+1. 对页面的某一块区域修改的需求时，当涉及到样式和结构都更改的时候，要**注意结构的代码和样式的代码发布的顺序**，避免出现结构先上线样式后上线导致的页面样式问题。
 
 <a name="JavaScript"></a>
 JavaScript:
