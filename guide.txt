@@ -99,26 +99,26 @@ HTML:
 
 1. 块元素可以包含内联元素或某些块元素, 但内联元素却不能包含块元素, 它只能包含其它的内联元素;
 
-        <div><h1></h1><p></p></div> --- 对
-        <a href=”#”><span></span></a> --- 对
-        <span><div></div></span> --- 错
+		<div><h1></h1><p></p></div> --- 对
+		<a href="#"><span></span></a> --- 对
+		<span><div></div></span> --- 错
 
 2. 块级元素不能放在`<p>`里面;
 
-        <p><ol><li></li></ol></p> --- 错
-        <p><div></div></p> --- 错
+		<p><ol><li></li></ol></p> --- 错
+		<p><div></div></p> --- 错
 
 3. 有几个特殊的块级元素只能包含内嵌元素, 不能再包含块级元素, 这几个特殊的标签是;
 
-        h1、h2、h3、h4、h5、h6、p、dt
+		h1, h2, h3, h4, h5, h6, p, dt
 
 4. `<li>` 内可以包含 `<div>` 标签;
 
-5. 块级元素与块级元素并列、内嵌元素与内嵌元素并列;
+5. 块级元素与块级元素并列, 内嵌元素与内嵌元素并列;
 
-        <div><h2></h2><p></p></div> --- 对
-        <div><a href=”#”></a><span></span></div> --- 对
-        <div><h2></h2><span></span></div> --- 错
+		<div><h2></h2><p></p></div> --- 对
+		<div><a href="#"></a><span></span></div> --- 对
+		<div><h2></h2><span></span></div> --- 错
 
 
 **注释规范**
@@ -279,7 +279,7 @@ CSS:
 
 **其他注意事项**
 
-1. 对页面的某一块区域修改的需求时, 当涉及到样式和结构都更改的时候, 要 ** 注意结构（HTML）的代码和样式（CSS）的代码发布的顺序 **, 避免出现结构先上线、样式后上线导致页面样式出现问题.
+1. 对页面的某一块区域修改的需求时, 当涉及到样式和结构都更改的时候, 要 ** 注意结构（HTML）的代码和样式（CSS）的代码发布的顺序 **, 避免出现结构先上线, 样式后上线导致页面样式出现问题.
 
 2. CSS 中的图片地址在上线前都要替换为线上地址.
 
@@ -478,12 +478,12 @@ JavaScript:
 
     保留字列表:
 
-    abstract boolean break byte case catch char class const
-    continue default do double else extends false final finally
-    float for function goto if implements import in instanceof
-    int interface long native new null package private protected
-    public return short static super switch synchronized this
-    throw throws transient true try var void while with
+		abstract boolean break byte case catch char class const
+		continue default do double else extends false final finally
+		float for function goto if implements import in instanceof
+		int interface long native new null package private protected
+		public return short static super switch synchronized this
+		throw throws transient true try var void while with
     
 
 15. 尽量保持所有名称最短, 但是一定要保证名称具有描述性; 
