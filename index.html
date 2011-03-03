@@ -174,6 +174,9 @@
 					//插入内容
 					$('<div id="preview" class="preview" />').appendTo($('body')).html(new Showdown.converter().makeHtml(data));
 
+					//对于 ie6/7 不做处理
+					if($.browser.msie && $.browser.version < 8) return false;
+
 					//隐藏多行内容
 					$('li').each(function() {
 
@@ -211,6 +214,7 @@
 					);
 
 					//展开全部
+					$('.J_ExpandAll').text('展开全部');
 					$('.J_ExpandAll').toggle(
 
 						//展开
