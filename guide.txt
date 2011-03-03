@@ -83,17 +83,15 @@ HTML:
 
 7. `<iframe>` 标签尽量少用;
 
-8. `<meta>`标签要放在`<head>`标签的第一个子节点;(放在 title 后面会导致一些奇怪问题的发生);
+8. 当 link 元素用于引用CSS文档时, 默认 media 是 screen, 如为特殊终端提供样式, 请指定 media 属性, 如 media=“print”;
 
-9. 当 link 元素用于引用CSS文档时, 默认 media 是 screen, 如为特殊终端提供样式, 请指定 media 属性, 如 media=“print”;
+9. `<img>`标签要加上 alt 属性(alt 属性是一个必需的属性, 它规定在图像无法显示时的替代文本.)
 
-10. `<img>`标签要加上 alt 属性(alt 属性是一个必需的属性, 它规定在图像无法显示时的替代文本.)
+10. `<a>`标签里若只包含图片要加上 title 属性(title 属性规定关于元素的额外信息.这些信息通常会在鼠标移到元素上时显示一段工具提示文本.)
 
-11. `<a>`标签里若只包含图片要加上 title 属性(title 属性规定关于元素的额外信息.这些信息通常会在鼠标移到元素上时显示一段工具提示文本.)
+11. `<a>`链接的 href 属性一般要加上具体的链接, 不要使用空链接 # 和 javascript:void(0);
 
-12. `<a>`链接的 href 属性一般要加上具体的链接, 不要使用空链接 # 和 javascript:void(0);
-
-13. 对于表单控件对应的文本必须使用 `<label>` 元素标记, 且使用 for 属性指向该控件 id;
+12. 对于表单控件对应的文本必须使用 `<label>` 元素标记, 且使用 for 属性指向该控件 id;
     
     <label for="username"><input type="text" name="username" id="username" value=""/></label>
 
