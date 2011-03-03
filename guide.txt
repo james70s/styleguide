@@ -83,8 +83,7 @@ HTML:
 
 7. `<iframe>` 标签尽量少用;
 
-8. `<meta>`标签要放在`<head>`标签的第一个子节点;(放在title后面会导致一些奇怪问题
-的发生);
+8. `<meta>`标签要放在`<head>`标签的第一个子节点;(放在 title 后面会导致一些奇怪问题的发生);
 
 9. 当 link 元素用于引用CSS文档时, 默认 media 是 screen, 如为特殊终端提供样式, 请指定 media 属性, 如 media=“print”;
 
@@ -92,34 +91,36 @@ HTML:
 
 11. `<a>`标签里若只包含图片要加上 title 属性(title 属性规定关于元素的额外信息.这些信息通常会在鼠标移到元素上时显示一段工具提示文本.)
 
-12. `<a>`链接的href属性一般要加上具体的链接, 不要使用空链接 # 和 javascript:void(0);
+12. `<a>`链接的 href 属性一般要加上具体的链接, 不要使用空链接 # 和 javascript:void(0);
 
-13. 对于表单控件对应的文本必须使用 `<label>` 元素标记, 且使用 for 属性指向该控件id;
+13. 对于表单控件对应的文本必须使用 `<label>` 元素标记, 且使用 for 属性指向该控件 id;
+    
+    <label for="username"><input type="text" name="username" id="username" value=""/></label>
 
 **标签嵌套规范**
 
 1. 块元素可以包含内联元素或某些块元素, 但内联元素却不能包含块元素, 它只能包含其它的内联元素;
 
-        <div><h1></h1><p></p></div> —— 对
-        <a href=”#”><span></span></a> —— 对
-        <span><div></div></span> —— 错
+    <div><h1></h1><p></p></div> --- 对
+    <a href=”#”><span></span></a> --- 对
+    <span><div></div></span> --- 错
 
 2. 块级元素不能放在`<p>`里面;
 
-        <p><ol><li></li></ol></p> —— 错
-        <p><div></div></p> —— 错
+    <p><ol><li></li></ol></p> --- 错
+    <p><div></div></p> --- 错
 
 3. 有几个特殊的块级元素只能包含内嵌元素, 不能再包含块级元素, 这几个特殊的标签是;
 
-        h1、h2、h3、h4、h5、h6、p、dt.
+    h1、h2、h3、h4、h5、h6、p、dt
 
 4. `<li>` 内可以包含 `<div>` 标签;
 
 5. 块级元素与块级元素并列、内嵌元素与内嵌元素并列;
 
-        <div><h2></h2><p></p></div> —— 对
-        <div><a href=”#”></a><span></span></div> —— 对
-        <div><h2></h2><span></span></div> —— 错
+    <div><h2></h2><p></p></div> --- 对
+    <div><a href=”#”></a><span></span></div> --- 对
+    <div><h2></h2><span></span></div> --- 错
 
 
 **注释规范**
@@ -169,7 +170,7 @@ HTML:
 
 **其他注意事项**
 
-1. 非发布日, 因紧急需求加入页面的 style 和 script, 应在下一次发布时, 加到对应的 css 文件或是 js 文件里面;
+1. 非发布日, 因紧急需求加入页面的 style 和 script, 应加入注释，并在下一次发布时加到对应的 css 文件或是 js 文件里面, 如果所修改的样式生命周期不长则灵活应对;
 
 2. 页面的 footer 部分很多时候都被开发作为公用部分, 有一些 js 文件的位置可以酌情放在 content 部分;
 
@@ -280,7 +281,9 @@ CSS:
 
 **其他注意事项**
 
-1. 对页面的某一块区域修改的需求时, 当涉及到样式和结构都更改的时候, 要 ** 注意结构的代码和样式的代码发布的顺序 **, 避免出现结构先上线样式后上线导致的页面样式问题.
+1. 对页面的某一块区域修改的需求时, 当涉及到样式和结构都更改的时候, 要 ** 注意结构（HTML）的代码和样式（CSS）的代码发布的顺序 **, 避免出现结构先上线、样式后上线导致页面样式出现问题.
+
+2. CSS 中的图片地址在上线前都要替换为线上地址.
 
 <a name="JavaScript"></a>
 JavaScript:
@@ -369,7 +372,7 @@ JavaScript:
 
 6. 明确命名空间所有权 
 
-   当选择了一个子命名空间, 请确保父命名空间的负责人知道你在用哪个子命名空间, 比如说, 你为工程 'sloths' 创建一个 'hats' 子命名空间, 那确保 Sloth 团队人员知道你在使用 sloth.hats.
+   当选择了一个子命名空间, 请确保父命名空间的负责人知道你在用哪个子命名空间, 比如说, 你为工程 'sloths' 创建一个 'hats' 子命名空间, 那确保 sloths 团队人员知道你在使用 sloths.hats.
 
 7. 外部代码和内部代码使用不同的命名空间 
 
@@ -473,7 +476,17 @@ JavaScript:
 
 13. 在循环中, 尽量使用单字符变量名称, 例如: i, j, k, m, n; 
 
-14. 避免使用保留字或语言构造命名; 
+14. 避免使用保留字或语言构造命名;
+
+    保留字列表:
+
+    abstract boolean break byte case catch char class const
+    continue default do double else extends false final finally
+    float for function goto if implements import in instanceof
+    int interface long native new null package private protected
+    public return short static super switch synchronized this
+    throw throws transient true try var void while with
+    
 
 15. 尽量保持所有名称最短, 但是一定要保证名称具有描述性; 
 
