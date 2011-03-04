@@ -75,23 +75,17 @@ HTML:
 
 3. `<strong>` 标签用于强调重要性, `<em>` 标签用于表示内容的着重点;( [Why?][strong&em] )
 
-4. `<i>` 标签用来显示图标(icon);
+4. `<iframe>` 标签尽量少用;
 
-5. `<s>` 标签用来显示阴影(shadow);
+5. 当 link 元素用于引用CSS文档时, 默认 media 是 screen, 如为特殊终端提供样式, 请指定 media 属性, 如 media=“print”;
 
-6. `<b>` 标签用来显示边框(border);
+6. `<img>`标签要加上 alt 属性(alt 属性是一个必需的属性, 它规定在图像无法显示时的替代文本.)
 
-7. `<iframe>` 标签尽量少用;
+7. `<a>`标签里若只包含图片要加上 title 属性(title 属性规定关于元素的额外信息.这些信息通常会在鼠标移到元素上时显示一段工具提示文本.)
 
-8. 当 link 元素用于引用CSS文档时, 默认 media 是 screen, 如为特殊终端提供样式, 请指定 media 属性, 如 media=“print”;
+8. `<a>`链接的 href 属性一般要加上具体的链接, 不要使用空链接 # 和 javascript:void(0);
 
-9. `<img>`标签要加上 alt 属性(alt 属性是一个必需的属性, 它规定在图像无法显示时的替代文本.)
-
-10. `<a>`标签里若只包含图片要加上 title 属性(title 属性规定关于元素的额外信息.这些信息通常会在鼠标移到元素上时显示一段工具提示文本.)
-
-11. `<a>`链接的 href 属性一般要加上具体的链接, 不要使用空链接 # 和 javascript:void(0);
-
-12. 对于表单控件对应的文本必须使用 `<label>` 元素标记, 且使用 for 属性指向该控件 id;
+9. 对于表单控件对应的文本必须使用 `<label>` 元素标记, 且使用 for 属性指向该控件 id;
     
         <label for="username"><input type="text" name="username" id="username" value=""/></label>
 
