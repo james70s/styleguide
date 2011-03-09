@@ -14,7 +14,7 @@
 
 		body {
 			font-size:14px;
-			font-family:Verdana;
+			font-family:"宋体";
 			line-height:24px;
 			color:#666;
 		}
@@ -23,6 +23,7 @@
 			font-size:30px;
 			color:green;
 			padding-bottom:20px;
+			margin-top:60px;
 			margin-bottom:20px;
 			border-bottom:1px solid #eaeaea;
 			text-align:center;
@@ -38,6 +39,10 @@
 			margin:10px 30px;
 		}
 
+		li {
+			margin-bottom:10px;
+		}
+
 		li p:first-child {
 			color:#333;
 		}
@@ -50,7 +55,7 @@
 		}
 
 		.preview {
-			margin:20px;
+			padding:0 20px;
 		}
 
 		table, th, td {
@@ -71,23 +76,61 @@
 			display:inline-block;
 			height:0;
 			width:0;
-			border-color:#06c transparent transparent transparent;
+			border-color:#06c #fff #fff #fff;
 		    border-style:solid;
 			border-width:5px 5px 0 5px;	
 			vertical-align:middle;
 			margin-left:5px;
+			_vertical-align:top;
+			_margin-top:5px;
+			overflow:hidden;
+			zoom:1;
 		}
 
 		.fold {
 			border-width:0 5px 5px 5px;
-			border-color:transparent transparent #06c transparent;
+			border-color:#fff #fff #06c #fff;
 		}
 
 		.hidden {
 			display:none;
 		}
 
+		.short-cut {
+			position:fixed;
+			top:0;
+			left:0;
+			text-align:center;
+			background:#fafafa;
+			padding:10px 0;
+			width:100%;
+		}
+
 	</style>
+
+	<!--[if IE 6]>
+	<style>
+		body { 
+			height:100%; 
+			overflow:hidden; 
+			position:relative;
+		}
+
+		html { 
+			height:100%; 
+			overflow:hidden;
+		}
+
+		.preview {
+			height:100%;
+			overflow-y:scroll;
+		}
+
+		.short-cut {
+			position:absolute;
+		}
+	</style>
+	<![endif]-->
 </head>
 <body>
 	<!-- use jQuery to convert Markdown to HTML -->
@@ -96,29 +139,35 @@
 	<script>
 		$(function() {
 
-			//展开
+			/**
+			 * 展开详情
+			 * @param { HTMLelement } el 与展开相关联的元素
+			 */
 			function expand(el) {
 
-				var that = $(el),
-					li = $(that).parents('li')[0];
+				var ele = $(el),
+					li = $(ele).parents('li')[0],
+					url = $(ele).attr('href').split('/'),
+					hash = url[url.length - 1];
 				
-				$(that).addClass('fold');
-		
+				$(ele).addClass('fold');
+
 				//判断是否需要请求
-				if('#' !== $(that).attr('href')) {
 
-								$.get(
+				if('#' !== hash) {
 
-									$(that).attr('href'),
+					$.get(
 
-									function(data) {
+						$(ele).attr('href'),
 
-										$('<div class="h" />').appendTo($(li)).html(data);
+						function(data) {
 
-										$(that).attr('href', '#');
+							$('<div class="h" />').appendTo($(li)).html(data);
 
-									}
-								);
+							$(ele).attr('href', '#');
+
+						}
+					);
 
 				}
 
@@ -126,130 +175,187 @@
 
 			}
 
-			//收起
+			/**
+			 * 收起详情
+			 * @param { HTMLelement } el 与收起相关联的元素
+			 */
 			function fold(el) {
 
-				var that = $(el),
-					li = $(that).parents('li')[0];
+				var ele = $(el),
+					li = $(ele).parents('li')[0];
 
-				$(that).removeClass('fold');
+				$(ele).removeClass('fold');
 
 				hide(li);
 				
 			}
 
-			//显示
+			/**
+			 * 显隐子元素
+			 * @param { HTMLelement } el 需要操作的元素
+			 * @param { String } type 需要操作的类型
+			 */
+			function _show(el, type) {
+
+				$(el).children().each(function(i, c) {
+					if( 0 !== i) {
+
+						$(c)[type + 'Class']('hidden');
+
+					}	
+				});
+
+			}
+
+			/**
+			 * 显示子元素
+			 * @param { HTMLelement } el 需要操作的元素
+			 */
 			function show(el) {
 
-				$(el).children().each(function(i, c) {
-					if( 0 !== i) {
-
-						$(c).removeClass('hidden');
-
-					}	
-				});
+				_show(el, 'remove');
 
 			}
 
-			//隐藏
+			/**
+			 * 隐藏子元素
+			 * @param { HTMLelement } el 需要操作的元素
+			 */
 			function hide(el) {
 
-				$(el).children().each(function(i, c) {
-					if( 0 !== i) {
-
-						$(c).addClass('hidden');
-
-					}	
-				});
+				_show(el, 'add');
 
 			}
 
+			/**
+			 * 分时处理
+			 * @param { Array } items 需要处理的数组
+			 * @param { Function } process 对每一个数组元素需要处理的函数
+			 * @param { Object } context 上下文
+			 * @param { Function } callback 回调函数
+			 */
+			function timerChunk(items, process, context, callback) {
+
+				var todo = $.makeArray(items).concat(),
+					i = 25;
+
+				setTimeout(function() {
+
+					var s = +new Date();
+
+					do {
+
+						process.call(context || $, todo.shift());
+
+					} while(todo.length > 0 && (+new Date() - s < i));
+						
+					if(todo.length > 0) {
+
+						setTimeout(arguments.callee, i);
+
+					} else {
+
+						callback && callback(items);
+
+					}
+					
+				}, i);
+
+			}
+
+			/**
+			 * 创建快捷链接
+			 */
+			 function createShortCut() {
+
+				 $('<div class="short-cut" />').appendTo($('body')).html('<p><strong>Quick Links: </strong> <a href="#HTML">HTML</a> , <a href="#CSS">CSS</a> , <a href="#JavaScript">Javascript</a> , <a href="#" class="J_ExpandAll">展开全部</a></p>');
+
+				//展开全部
+				$('.J_ExpandAll').toggle(
+
+					//展开
+					function() {
+
+						$(this).text('收起全部');
+
+						timerChunk($('.J_Expand'), function(c) {
+						
+							expand(c);
+
+						});
+
+					},
+
+					//收起
+					function() {
+
+						$(this).text('展开全部');
+
+						timerChunk($('.J_Expand'), function(c) {
+						
+							fold(c);
+
+						});
+
+					}
+
+				);
+
+			 }
+
+			//获取文本
 			$.get(
 
-				'guide.txt',
+				'guide.txt?t=20110309',
 
 				function(data) {
 
 					//插入内容
 					$('<div id="preview" class="preview" />').appendTo($('body')).html(new Showdown.converter().makeHtml(data));
 
-					//对于 ie6/7 不做处理
-					if(!$.browser.msie || $.browser.version >= 8) {
+					//隐藏多行内容
+					timerChunk($('li'), function(item) {
 
-						//隐藏多行内容
-						$('li').each(function() {
+						var children = $(item).children(),
+							first = children[0];	
 
-							var children = $(this).children(),
-								first = children[0];	
+						if(children.length > 1) {
 
-							if(children.length > 1) {
+							if(0 === $(first).children('.J_Expand').length) {
 
-								if(0 === $(first).children('.J_Expand').length) {
-
-									$('<a href="#" class="expand J_Expand" />').appendTo($(first));	
-
-								}
-
-								hide(this);	
+								$('<a href="#" class="expand J_Expand" />').appendTo($(first));	
 
 							}
-							
-						});
 
-					}
-
-					//收起, 展开更多内容
-					$('.J_Expand').toggle(
-						//展开
-						function() {
-
-							expand(this);
-
-						},
-						//收起
-						function() {
-
-							fold(this);
-
-						}
-					);
-
-					if($.browser.msie && $.browser.version < 8) return false;
-
-					//展开全部
-					$('.J_ExpandAll').text('展开全部');
-					$('.J_ExpandAll').toggle(
-
-						//展开
-						function() {
-
-							$(this).text('收起全部');
-
-							$('.J_Expand').each(function(i, c) {
-
-								expand(c);	
-								
-							});
-
-						},
-
-						//收起
-						function() {
-
-							$(this).text('展开全部');
-
-							$('.J_Expand').each(function(i, c) {
-
-								fold(c);
-								
-							});
-
+							hide(item);	
 
 						}
 
-					);
+					}, null, function() {
+
+						//收起, 展开更多内容
+						$('.J_Expand').click(
+
+							function() {
+
+								if($(this).hasClass('fold')) {
+									fold($(this));
+								} else {
+									expand($(this));
+								}
+								return false;
+
+							}
+
+						);
+
+						//显示快捷链接
+						createShortCut();
+
+					});
 
 				}
+
 			);
 
 		});

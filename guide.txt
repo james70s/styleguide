@@ -5,11 +5,6 @@
 ----------
 规范是一面镜子.
 
-Quick Links:
-----------
-
-[HTML][q-html], [CSS][q-css], [Javascript][q-js], <a href="#" class="J_ExpandAll"></a>
-
 <a name="HTML"></a>
 HTML:
 ----------
@@ -139,19 +134,45 @@ HTML:
 
 3. ie 条件注释:
 
+   IE 5 以上版本识别:
+
 		<!--[if IE]>
 		<![endif]-->
 
+   仅某一版本 IE 可以识别:
+
+		<!--[if IE 6]>
+		<![endif]-->
 
 		<!--[if IE 7]>
 		<![endif]-->
 
+		<!--[if IE 8]>
+		<![endif]-->
+
+   低于某一版本 IE 可以识别:
+
+		<!--[if lt IE 7]>
+		<![endif]-->
+
+   低于或等于某一版本 IE 可以识别:
 
 		<!--[if lte IE 7]>
 		<![endif]-->
 
+   高于某一版本 IE 可以识别:
 
-		<!--[if !IE]><!-->
+		<!--[if gt IE 7]>
+		<![endif]-->
+
+   高于或等于某一版本 IE 可以识别:
+
+		<!--[if gte IE 7]>
+		<![endif]-->
+
+   非 IE 可以识别(不建议使用):
+
+		<!--[if !IE]>
 		<!--<![endif]-->
 
 **其他注意事项**
@@ -1550,6 +1571,7 @@ JavaScript:
 * [Google JavaScript Style Guide][gjsg]
 * [Google JavaScript Style Guide 中文版][gjsg-cn]
 * [Code Style][cs]
+* [IE 条件注释][ie-comment]
 
 [strong&em]: http://www.css88.com/archives/644 "em和strong的区别"
 [w3-custom-data]: http://dev.w3.org/html5/spec/Overview.html#embedding-custom-non-visible-data-with-the-data-attributes "Embedding custom non-visible data with the data-* attributes"
@@ -1566,3 +1588,4 @@ JavaScript:
 [jsdoc]: http://code.google.com/p/jsdoc-toolkit/
 [jsdoc-tag]: http://code.google.com/p/jsdoc-toolkit/wiki/TagReference
 [inline-rule]: http://www.junchenwu.com/2007/01/allowed_nesting_of_elements_in_html_4_strict_and_xhtml_10_strict.html
+[ie-comment]: http://wenku.baidu.com/view/f24197b665ce05087632133c.html
