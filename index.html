@@ -81,8 +81,6 @@
 			border-width:5px 5px 0 5px;	
 			vertical-align:middle;
 			margin-left:5px;
-			_vertical-align:top;
-			_margin-top:5px;
 			overflow:hidden;
 			zoom:1;
 		}
@@ -128,6 +126,11 @@
 
 		.short-cut {
 			position:absolute;
+		}
+
+		.expand, .fold {
+			vertical-align:top;
+			margin-top:5px;
 		}
 	</style>
 	<![endif]-->
@@ -268,7 +271,7 @@
 			 */
 			 function createShortCut() {
 
-				 $('<div class="short-cut" />').appendTo($('body')).html('<p><strong>Quick Links: </strong> <a href="#HTML">HTML</a> , <a href="#CSS">CSS</a> , <a href="#JavaScript">Javascript</a> , <a href="#" class="J_ExpandAll">展开全部</a></p>');
+				 $('<div class="short-cut" />').appendTo($('body')).html('<p><strong>Quick Links: </strong> <a href="#HTML">HTML</a> , <a href="#CSS">CSS</a> , <a href="#JavaScript">Javascript</a> , <a href="#" class="J_ExpandAll">展开全部</a>, <a href="https://github.com/nanzhi/styleguide">参与完善规范</a></p>');
 
 				//展开全部
 				$('.J_ExpandAll').toggle(
