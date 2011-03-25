@@ -1597,6 +1597,7 @@ JavaScript:
 * [Google JavaScript Style Guide 中文版][gjsg-cn]
 * [Code Style][cs]
 * [IE 条件注释][ie-comment]
+* [ OOP 设计原则][oop-design]
 
 [strong&em]: http://www.css88.com/archives/644 "em和strong的区别"
 [w3-custom-data]: http://dev.w3.org/html5/spec/Overview.html#embedding-custom-non-visible-data-with-the-data-attributes "Embedding custom non-visible data with the data-* attributes"
@@ -1614,3 +1615,4 @@ JavaScript:
 [jsdoc-tag]: http://code.google.com/p/jsdoc-toolkit/wiki/TagReference
 [inline-rule]: http://www.junchenwu.com/2007/01/allowed_nesting_of_elements_in_html_4_strict_and_xhtml_10_strict.html
 [ie-comment]: http://wenku.baidu.com/view/f24197b665ce05087632133c.html
+[oop-design]: http://blog.csdn.net/httphttpcn/archive/2010/12/16/6079004.aspx
