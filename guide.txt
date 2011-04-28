@@ -1555,21 +1555,33 @@ JavaScript:
 
    一个函数或者一个类只应该负责一件事, 这可以为我们后期的维护以及测试节省很多的成本.
 
-   比如: KISSY.attr 方法, 它做了两件事, 不管是在语义还是在维护上都会带来很多的困惑以及不便, 这时候我们要去考虑接口分离原则.
+   比如: YUI.DOM.setStyle 专门负责设置元素样式, 而 YUI.DOM.getStyle 负责获取元素样式.
 
 2. 接口分离原则:
 
    跟单一职能原则联系比较紧密, 遵循单一职能原则, 将功能进行拆分.
 
-   比如: KISSY.attr 方法拆成两个, 一个是 get, 一个是 set.
+   比如: dojo.style 方法, 它本身包含了 get 和 set 两个接口, 应该将其拆分, 如 YUI.DOM.setStyle, YUI.DOM.getStyle.
 
 3. 遵循现有规范/标准:
 
    所有的接口设计都应该遵循已有的接口以及现有的规范, 不要因个人的喜好去做修改, 简化或者美化, 带来的学习, 使用成本都会很高.
 
-   比如: KISSY.attr, 原生的我们获取属性以及设置属性的方法为 getAttribute 和 setAttribute, 而 KISSY 修改了这个名字, 其实是对标准的一种伤害;
+   比如: Ajbridge.store.getItem, Ajbridge.store.setItem 与现代浏览器的本地存储接口一致: localStorage.getItem, localStorage.setItem.
 
-   再比如: KISSY.indexOf(value, array, fromIndex) 的参数顺序, 在原生支持的浏览器下, 原生的 Array indexOf 方法使用是 [1, 2].indexOf(1, 0) (Array.indexOf(value, fromIndex)), 但是 KISSY 的 indexOf 方法颠倒了参数的顺序, 违背了使用习惯以及现有规范, 很容易带来一些后遗症....
+   比如: KISSY.indexOf(value, array, fromIndex) 的参数顺序, 在原生支持的浏览器下, 接口为 Array.indexOf(value, fromIndex), 但是 KISSY 的 indexOf 方法颠倒了参数的顺序, 违背了使用习惯以及现有规范, 为使用者得学习带来较高成本. ([Mozilla Array IndexOf][moz-array-indexof])
+
+4. 接口应该有合理的返回值, 应正确区分 undefined 和 null:
+
+   合理的返回值可以减轻我们很多的工作量, 在使用过程中会更顺畅.
+
+   比如: UA.ie, 在 ie 浏览器下我们应该返回正确的版本号, 而在其它浏览器下应该返回 undefined.
+
+5. 不要过多的干预使用者:
+
+   我们不应该想当然的认为使用者应该怎样使用, 而应与实践相结合提供接口.
+
+   比如: 异步请求的回调函数, 我们应该为使用者提供什么样的参数? 添加什么样的作用域? 这个应该由用于来决定, 而不是由我们来决定.
 
 
  
@@ -1599,6 +1611,7 @@ JavaScript:
 * [IE 条件注释][ie-comment]
 * [ OOP 设计原则][oop-design]
 * [ HTML5 设计原理][html5-theory]
+* [ Mozilla Developer ][mdc]
 
 [strong&em]: http://www.css88.com/archives/644 "em和strong的区别"
 [w3-custom-data]: http://dev.w3.org/html5/spec/Overview.html#embedding-custom-non-visible-data-with-the-data-attributes "Embedding custom non-visible data with the data-* attributes"
@@ -1618,3 +1631,5 @@ JavaScript:
 [ie-comment]: http://wenku.baidu.com/view/f24197b665ce05087632133c.html
 [oop-design]: http://blog.csdn.net/httphttpcn/archive/2010/12/16/6079004.aspx
 [html5-theory]: http://www.cn-cuckoo.com/2010/10/21/the-design-of-html5-2151.html
+[moz-array-indexof]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
+[mdc]: https://developer.mozilla.org/
