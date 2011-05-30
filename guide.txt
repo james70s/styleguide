@@ -492,7 +492,7 @@ JavaScript:
 
 12. this 
 
-	命名为 that; 
+	命名为 <del>that</del> <ins>host</ins>(借鉴 YUI3 写法: host 本身有宿主的意思, 而 that 其实基本没有什么语义, 所以相对来说, host 更适合使用); 
 
 13. 在循环中, 尽量使用单字符变量名称, 例如: i, j, k, m, n; 
 
