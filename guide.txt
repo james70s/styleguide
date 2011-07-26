@@ -1614,6 +1614,7 @@ JavaScript:
 * [ OOP 设计原则][oop-design]
 * [ HTML5 设计原理][html5-theory]
 * [ Mozilla Developer ][mdc]
+* [The Principles of Good Programming][TPOGP]
 
 [strong&em]: http://www.css88.com/archives/644 "em和strong的区别"
 [w3-custom-data]: http://dev.w3.org/html5/spec/Overview.html#embedding-custom-non-visible-data-with-the-data-attributes "Embedding custom non-visible data with the data-* attributes"
@@ -1635,3 +1636,4 @@ JavaScript:
 [html5-theory]: http://www.cn-cuckoo.com/2010/10/21/the-design-of-html5-2151.html
 [moz-array-indexof]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
 [mdc]: https://developer.mozilla.org/
+[TPOGP]: http://www.artima.com/weblogs/viewpost.jsp?thread=331531
