@@ -70,7 +70,7 @@ HTML:
 
 1. `<base>` 标签必须放在 `<head>` 内 (注: 否则在某些浏览器下可能会失效);
 
-2. 每个页面最多使用一个 `<h1>` 标签;
+2. <del>每个页面最多使用一个 `<h1>` 标签;</del> [HTML5 section element][section].
 
 3. `<strong>` 标签用于强调重要性, `<em>` 标签用于表示内容的着重点;( [Why?][strong&em] )
 
@@ -1615,6 +1615,7 @@ JavaScript:
 * [ HTML5 设计原理][html5-theory]
 * [ Mozilla Developer ][mdc]
 * [The Principles of Good Programming][TPOGP]
+* [Real World CSS Practices][RWCP]
 
 [strong&em]: http://www.css88.com/archives/644 "em和strong的区别"
 [w3-custom-data]: http://dev.w3.org/html5/spec/Overview.html#embedding-custom-non-visible-data-with-the-data-attributes "Embedding custom non-visible data with the data-* attributes"
@@ -1637,3 +1638,5 @@ JavaScript:
 [moz-array-indexof]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
 [mdc]: https://developer.mozilla.org/
 [TPOGP]: http://www.artima.com/weblogs/viewpost.jsp?thread=331531
+[section]: http://www.w3.org/TR/2011/WD-html5-20110525/sections.html#the-section-element
+[RWCP]: http://blog.echoenduring.com/2011/08/19/real-world-css-practices/
