@@ -1616,6 +1616,7 @@ JavaScript:
 * [ Mozilla Developer ][mdc]
 * [The Principles of Good Programming][TPOGP]
 * [Real World CSS Practices][RWCP]
+* [10 best practices to follow while writing code comments][BestComemntPractices]
 
 [strong&em]: http://www.css88.com/archives/644 "em和strong的区别"
 [w3-custom-data]: http://dev.w3.org/html5/spec/Overview.html#embedding-custom-non-visible-data-with-the-data-attributes "Embedding custom non-visible data with the data-* attributes"
@@ -1640,3 +1641,4 @@ JavaScript:
 [TPOGP]: http://www.artima.com/weblogs/viewpost.jsp?thread=331531
 [section]: http://www.w3.org/TR/2011/WD-html5-20110525/sections.html#the-section-element
 [RWCP]: http://blog.echoenduring.com/2011/08/19/real-world-css-practices/
+[BestComemntPractices]: http://www.yousaytoo.com/10-best-practices-to-follow-while-writing-code-comments/981354
